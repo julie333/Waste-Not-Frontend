@@ -1,14 +1,14 @@
 // Actions
-
 export const LOGIN = 'login';
 export const DISPLAY_FEED = 'displayfeed';
 export const DISPLAY_USERS = 'fetchAllUsersData';
 export const DISPLAY_USER_DATA = 'fetchDataByUser';
 export const DISPLAY_ALL_PRODUCTS = 'fetchAllProductsData';
-export const DISPLAY_PRODUCT = 'fetchProductData';
+export const DISPLAY_PRODUCT = 'fetchDataByProduct';
 export const ADD_PRODUCTS = 'fetchAllProductsData';
 export const ADD_PRODUCT = 'fetchProductData';
 export const SEARCH = 'search';
+
 
 
 export const fetchAllUsersData = () => {
@@ -57,10 +57,10 @@ export const fetchDataByProduct = (id) => {
 
         return fetch('http://localhost:8080/products/' + id + '/')
             .then(data => data.json())
-            .then(productDetailsArray => {
+            .then(productDetails => {
                 dispatch({
                     type: DISPLAY_PRODUCT,
-                    data: productDetailsArray,
+                    data: productDetails,
                     productId: id,
                 })
             });
@@ -68,7 +68,7 @@ export const fetchDataByProduct = (id) => {
 }
 
 export const addProduct = (addProductsFormState) => {
-    console.log('submitted form data: ', addProductsFormState);
+    // console.log('submitted form data: ', addProductsFormState);
 
     const myHeaders = new Headers({
         'Content-Type': 'application/json',
@@ -85,8 +85,8 @@ export const addProduct = (addProductsFormState) => {
     return fetch('http://localhost:8080/Products', config)
         .then(results => results.json())
         .then(productData => {
-            console.log('config ', config);
-            console.log('fetched products', productData);
+            // console.log('config ', config);
+            // console.log('fetched products', productData);
 
         })
 }
@@ -112,7 +112,7 @@ export const search = (searchedItem) => {
                     console.log('no products were found');
                 } else {
                     console.log('products were found');
-                    console.log(products);
+                    // console.log(products);
                 }
 
                 dispatch({
@@ -139,11 +139,11 @@ export const login = (loginUser) => {
             .then(data => data.json())
             .then(userObj => {
                 if (userObj.id === null) {
-                    console.log('the email and password combination was wrong');
+                    // console.log('the email and password combination was wrong');
                 } else {
                     console.log('successful LOGIN');
                 }
-                console.log(userObj);
+                // console.log(userObj);
                 dispatch({
                     type: LOGIN,
                     data: userObj

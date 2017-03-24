@@ -8,6 +8,7 @@ class UserGroups extends Component {
 
     constructor(props) {
         super(props);
+                // console.log("UserGrp",this.props)
 
     }
 
@@ -15,8 +16,8 @@ class UserGroups extends Component {
 
         var groups = Object.keys(this.props.groupsToRender).length > 0 ? this.props.groupsToRender : [];
 
-        console.log('this.props ', this.props)
-        console.log('this.props.groupsToRender ', this.props.groupsToRender)
+      
+        // console.log('this.props.groupsToRender ', this.props.groupsToRender)
 
         return (    
 <div className="UserGroups">

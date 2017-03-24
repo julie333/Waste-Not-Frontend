@@ -11,10 +11,11 @@ class Searched extends Component {
 
     render() {
           var products = Object.keys(this.props.products).length > 0 ? this.props.products : [];
-          console.log("products",products)
+        
         return (
             <div className="Searched">
-              <Products productsToRender={ products }/> 
+              <Products productsToRender={ products }
+              router={this.props.router}/> 
             </div>
         )
     }

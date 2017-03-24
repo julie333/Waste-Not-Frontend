@@ -21,7 +21,7 @@ export const container = {
     display: 'flex',
     flexWrap: 'wrap',
     height: '100%',    
-    backgroundColor: 'white',
+    backgroundColor: 'whitesmoke',
     textAlign: 'center',
     width: '90%',
     marginRight: 'auto',

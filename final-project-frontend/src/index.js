@@ -31,8 +31,8 @@ ReactDOM.render(
                  <Route path="/register" component={RegisterForm} />  
                  <Route path="/users" component={ Users } />  
                  <Route path="/users/currentUser" component={CurrentUser} />
-                 <Route path="/users/currentUser/products/addNewProduct" component={ AddProduct } />
-                 <Route path="/users/currentUser/createNewGroup" component={ AddGroup } />
+                 <Route path="/users/addNewProduct" component={ AddProduct } />
+                 <Route path="/users/createNewGroup" component={ AddGroup } />
                  <Route path="/users/currentUser/groups" component={ UserGroups } /> 
                  <Route path="/products" component={ Products } />
                  <Route path="/searchedproducts" component={ Searched } />

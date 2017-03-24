@@ -1,55 +1,47 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {GridList, GridTile} from 'material-ui/GridList';
+import { GridList, GridTile } from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
-import { styles } from './constants.js';
-
+import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
+import ActionZoomIn from 'material-ui/svg-icons/action/zoom-in';
+import NavigationFullscreen from 'material-ui/svg-icons/navigation/fullscreen';
+import NavigationFullscreenExit from 'material-ui/svg-icons/navigation/fullscreen-exit';
+import MapsZoomOutMap from 'material-ui/svg-icons/maps/zoom-out-map';
+import { root, gridList } from './constants.js';
 
 class Products extends Component {
 
-    render() {
+    constructor(props) {
+        super(props);
+    }
 
-    const styles = {
-          root: {
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-around',
-            fontFamily: 'Nunito',
-            color: 'whitesmoke',
-            fontSize: 20,
-          },
-          gridList: {
-            width: 500,
-            height: 450,
-            overflowY: 'auto',
-            fontFamily: 'Nunito',
-            color: 'whitesmoke',
-          },
+    handleZoom = (key) => {
+
+        event.preventDefault();
+        console.log("Item Id: ", key);
+        this.props.router.push('/products/' + key);
     };
 
-    var products = Object.keys(this.props.productsToRender).length > 0 ? this.props.productsToRender : [];
+    render() {
 
-           console.log('this.props ',this.props)
-           console.log('this.props.productsToRender ',this.props.productsToRender)
-
+        var products = Object.keys(this.props.productsToRender).length > 0 ? this.props.productsToRender : [];
         return (
             <div className="Products">
 
-  <div style={styles.root}>
+  <div style={root}>
     <GridList
     cols={3}
       cellHeight={180}
-      style={styles.gridList}
+      style={gridList}
     >
-      <Subheader style={styles.root} >You Shared these ..</Subheader>
+      <Subheader style={root} >You Shared these ..</Subheader>
       {products.map((tile) => (
-        <GridTile
+        <GridTile  onTouchTap={this.handleZoom.bind(this, tile.id)}
           key={tile.id}
           title={tile.productName}
           subtitle={<span>- <b>{tile.productOwner.username}</b></span>}
-          actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
+          actionIcon={<IconButton><MapsZoomOutMap color="white" /></IconButton>}
         >
           <img src={tile.productImageUrl} />
         </GridTile>
@@ -57,7 +49,7 @@ class Products extends Component {
     </GridList>
   </div>
   </div>
-           
+
         )
     }
 }

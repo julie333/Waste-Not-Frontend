@@ -27,14 +27,11 @@ class CurrentUser extends Component {
         this.setState({
             productName: event.currentTarget.value
         })
-        console.log(this.state.productName)
     };
 
     handleSearch = (event) => {
 
         event.preventDefault();
-        console.log(this.state)
-
         const searchAction = search(this.state);
 
         this.props.dispatch(searchAction)
@@ -51,11 +48,8 @@ class CurrentUser extends Component {
 
     render() {
 
-        console.log('this.props ', this.props.currentUser)
         return (
-            <div className="container" style={container}>
-
-          
+            <div className="container" style={container}>          
                 <div className="header" style={header}>
                      <h3>{ this.props.currentUser.username }</h3>
                             <Avatar style={avatar}
@@ -69,7 +63,6 @@ class CurrentUser extends Component {
                      “Earth provides enough to satisfy every man's needs, but not every man's greed.” 
                       <footer>— Gandhi</footer>
                      </blockquote>
-
                      <input  id="txtbox" type="text" 
                              required name="search item" 
                              placeholder="  What would you like to save ?"
@@ -80,19 +73,19 @@ class CurrentUser extends Component {
                 </div>
 
                 <div className="productsPostedByUser" style={productsPostedByUser}>
-                      <Products productsToRender={this.props.currentUser.productsPosted}/>   
+                      <Products productsToRender={this.props.currentUser.productsPosted} 
+                      router={this.props.router}/>   
                 </div>
                 <div className="UserGroups" style={userGroups}>
-                      <UserGroups groupsToRender={this.props.currentUser.groups}/>  
+                      <UserGroups groupsToRender={this.props.currentUser.groups}
+                      router={this.props.router}/> 
                        </div>   
-                                          <BottomNavigationUser/>        
+                 <BottomNavigationUser router={this.props.router}/>        
               
             </div>
         )
     }
 }
-
-
 
 const mapStateToProps = (state) => {
     return state;

@@ -1,19 +1,24 @@
 import React, {Component} from 'react';
-import FontIcon from 'material-ui/FontIcon';
 import {BottomNavigation, BottomNavigationItem} from 'material-ui/BottomNavigation';
 import Paper from 'material-ui/Paper';
 import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
+import ContentAddCircle  from 'material-ui/svg-icons/content/add-circle';
+import SocialGroupAdd from 'material-ui/svg-icons/social/group-add';
+import SocialNotifications  from 'material-ui/svg-icons/social/notifications';
+import SocialShare from 'material-ui/svg-icons/social/share';
 
-const recentsIcon = <FontIcon className="material-icons">restore</FontIcon>;
-const favoritesIcon = <FontIcon className="material-icons">favorite</FontIcon>;
+const itemAdd = <ContentAddCircle/>;
+const groupAdd = <SocialGroupAdd/>;
 const nearbyIcon = <IconLocationOn />;
+const notifications = <SocialNotifications/>;
+const shareTo = <SocialShare />;
 
 const bottomNavigation ={
 
-    width: '100%',
-    height: '3%',
+    width: '100%', 
+    height: '2%',
     textAlign: 'center',
-
+    backgroundColor: '#008F95',
 }
 
 class BottomNavigationUser extends Component {
@@ -21,27 +26,54 @@ class BottomNavigationUser extends Component {
     selectedIndex: 0,
   };
 
-  select = (index) => this.setState({selectedIndex: index});
+  
+
+addProduct = (index) => {
+
+    this.setState({
+           selectedIndex: index,
+        })
+    this.props.router.push('/users/addNewProduct');
+};
+
+addGroup = (index) => {
+
+    this.setState({
+           selectedIndex: index,
+        })
+    this.props.router.push('/users/createNewGroup');
+};
+  
 
  render() {
     return (
 
-      <Paper style={bottomNavigation} zDepth={3}>
+      <Paper style={bottomNavigation} zDepth={4}>
         <BottomNavigation selectedIndex={this.state.selectedIndex}>
           <BottomNavigationItem
-            label="Add Products"
-            icon={recentsIcon}
-            onTouchTap={() => this.select(0)}
+            label="Items"
+            icon={itemAdd}
+            onTouchTap={() => this.addProduct(0)}
           />
           <BottomNavigationItem
-            label="Add Groups"
-            icon={favoritesIcon}
-            onTouchTap={() => this.select(1)}
+            label="Groups"
+            icon={groupAdd}
+            onTouchTap={() => this.addGroup(1)}
           />
           <BottomNavigationItem
-            label="See Items Nearby"
+            label="Nearby"
             icon={nearbyIcon}
             onTouchTap={() => this.select(2)}
+          />
+          <BottomNavigationItem
+            label="Notifications"
+            icon={notifications}
+            onTouchTap={() => this.select(3)}
+          />
+          <BottomNavigationItem
+            label="Share"
+            icon={shareTo}
+            onTouchTap={() => this.select(4)}
           />
         </BottomNavigation>
       </Paper>
