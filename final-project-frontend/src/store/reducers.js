@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
-import { LOGIN, DISPLAY_FEED, DISPLAY_USERS, DISPLAY_USER_DATA, DISPLAY_ALL_PRODUCTS,DISPLAY_PRODUCT, SEARCH  } from './actions.js';
+import { LOGIN, DISPLAY_FEED, DISPLAY_USERS, DISPLAY_USER_DATA,
+         DISPLAY_ALL_PRODUCTS,DISPLAY_PRODUCT, SEARCH, 
+         ADD_PRODUCT, ADD_GROUP, REGISTER } from './actions.js';
 
 function usersReducer(state = {}, action) {
     switch (action.type) {
@@ -9,6 +11,8 @@ function usersReducer(state = {}, action) {
                 newState.push(userObject);
             });
             return newState;
+        case REGISTER:
+            return action.data;
         default:
             return state;
     }
@@ -20,10 +24,15 @@ function currentUserReducer(state = {}, action) {
             return action.data;
         case DISPLAY_USER_DATA:
             return action.data;
+        case ADD_PRODUCT:
+            return action.data;
+        case ADD_GROUP:
+            return action.data;
         default:
             return state;
     }
 }
+
 
 function productsReducer(state = {}, action) {
     switch (action.type) {
@@ -48,6 +57,7 @@ function productsReducer(state = {}, action) {
             return state;
     }
 }
+
 
 const reducer = combineReducers({
     currentUser: currentUserReducer,

@@ -1,55 +1,168 @@
 import React, { Component } from 'react';
-import Paper from 'material-ui/Paper';
-import {List, ListItem} from 'material-ui/List';
+import { connect } from 'react-redux';
+import { Paper } from 'material-ui';
+import { formBox, usersFormStyle, usersFormTitle,buttonStyle } from './constants.js';
+import TextField from 'material-ui/TextField';
+import { blue500 } from 'material-ui/styles/colors';
+import { RaisedButton } from 'material-ui';
+import FlatButton from 'material-ui/FlatButton';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+import TimePicker from 'material-ui/TimePicker';
+import { style } from './constants.js';
+import { register } from '../../store/actions.js'
+import DatePicker from 'material-ui/DatePicker';
+import Divider from 'material-ui/Divider';
 
-
-const style = {
-    height: '50vh',
-    width: '95%',
-    margin: 20,
-    textAlign: 'center',
-    display: 'inline-block',
-};
 
 class RegisterForm extends Component {
 
-        constructor(props) {
+    constructor(props) {
         super(props);
-        this.state = {
-            firstName: '',
-            lastName: '',
-            street: '',
-            streetNb: 0,
-            postCode: '',
-            city: '',
-            country: '',
-            // latitude: '',
-            // longitude: '',
-            email: '',
-            password: ''
-        }
     }
 
 
-    render () {
-        console.log('in the register form');
+    submitNewUserData = (user) => {
+        event.preventDefault();
+        const addUserAction = register(this.state);
+        console.log('this.state inside the form ', this.state);
+        console.log('this.props ', this.props);
+
+    };
+
+
+    firstNameInput = (event) => {
+        this.setState({
+            firstName: event.currentTarget.value,
+        })
+
+    };
+
+    lastNameInput = (event) => {
+        this.setState({
+            lastName: event.currentTarget.value,
+        })
+
+    };
+
+    emailInput = (event) => {
+        this.setState({
+            email: event.currentTarget.value,
+        })
+
+    };
+
+    usernameInput = (event) => {
+        this.setState({
+            username: event.currentTarget.value,
+        })
+
+    };
+
+    usernameInput = (event) => {
+        this.setState({
+            username: event.currentTarget.value,
+        })
+
+    };
+
+    locationInput = (event) => {
+        this.setState({
+            location: event.currentTarget.value,
+        })
+
+    };
+
+
+    render() {
         return (
-            <div className="App">
-                <div className="App-header">
-                    <h2>Hey there! What would you like to share?</h2>
+            <div>
+                <div style={usersFormTitle} className="App-header">
+                    <h2>Add New User</h2>
                 </div>
-                    <Paper style={style} zDepth={3}>
-                        <List>
-                            <ListItem primaryText="my text" />
-                            <ListItem primaryText="my text" />
-                            <ListItem primaryText="my text" />
-                            <ListItem primaryText="my text" />
-                        </List>
-                    </Paper>
+                <div style={formBox}>
+                    <Paper style={usersFormStyle} zDepth={3}>
+
+                            <form  style={style}  onSubmit={this.submitNewUserData}>
+                            
+                                {/*firstName*/}
+                                  <TextField  style={style} 
+                                    hintText="First Name"
+                                    floatingLabelText="First Name"
+                                    onChange={this.firstNameInput}
+                                    underlineShow={false}
+                                  />
+                                  <Divider />
+
+                                {/*lastName*/}
+                                  <TextField  style={style} 
+                                    hintText="Last Name"
+                                    floatingLabelText="Last Name"
+                                    onChange={this.lastNameInput}
+                                    underlineShow={false}
+                                  />
+                                  <Divider />
+
+                                  {/*email*/}
+                                  <TextField  style={style} 
+                                    hintText="Email"
+                                    floatingLabelText="Email"
+                                    onChange={this.emailInput}
+                                    underlineShow={false}
+                                  />
+                                  <Divider />
+
+
+                                  {/*username*/}
+                                  <TextField  style={style} 
+                                    hintText="Username"
+                                    floatingLabelText="Pick a username"
+                                    onChange={this.usernameInput}
+                                    underlineShow={false}
+                                  />
+                                  <Divider />
+
+                                   {/*password*/}
+                                  <TextField  style={style} 
+                                    hintText="Pick a password"
+                                    floatingLabelText="Password"
+                                    onChange={this.passwordInput}
+                                    underlineShow={false}
+                                    type="password"
+                                 />
+                                  <Divider />
+
+                                  {/*avatar*/}
+                                  <TextField  style={style} 
+                                    hintText="Avatar"
+                                    floatingLabelText="Upload Avatar"
+                                    onChange={this.avatarInput}
+                                   underlineShow={false}
+                                  />
+                                  <Divider />
+
+                                {/*location*/}
+                                  <TextField  style={style} 
+                                    hintText="Location"
+                                    floatingLabelText="Location"
+                                    onChange={this.locationInput}
+                                    underlineShow={false}
+                                  />
+                                  <Divider />
+                                  
+                               <FlatButton style={buttonStyle} backgroundColor="#A2AB58" 
+                                           hoverColor='#67BCDB' label="Sign Up" 
+                                           onClick={this.submitNewUserData}/>
+                            </form>
+                        </Paper>
                 </div>
-            );
-    }
+            </div>
+        )
+    };
 }
 
-export default RegisterForm;
+const mapStateToProps = (state) => {
+    return state;
+}
 
+export default connect(mapStateToProps)(RegisterForm);

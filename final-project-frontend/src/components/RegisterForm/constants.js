@@ -1,4 +1,4 @@
-export const productsFormTitle = {
+export const usersFormTitle = {
     width: '100%',
     height: '80%',
     textAlign: 'center',
@@ -10,7 +10,7 @@ export const productsFormTitle = {
     fontWeight: 'bold',
 }
 
-export const productsFormStyle = {
+export const usersFormStyle = {
     height: '70%',
     width: '60%',
 }
@@ -24,16 +24,24 @@ export const formBox = {
 export const style = {
     fontFamily: 'Nunito',
     fontSize: 15,
-    marginBottom: '3%',
     marginRight: 'auto',
-    marginLeft: '10%',
+    marginLeft: '5%',
     color:'white'
 };
 
 export const dropdownStyle = {
     fontFamily: 'Nunito',
     fontSize: 15,
-    marginBottom: '3%',
     marginRight: 'auto',
     marginLeft: '3%',
+};
+
+export const buttonStyle = {
+    fontFamily: 'Nunito',
+    fontSize: 15,
+    marginTop : '10%',
+    marginBottom : '10%',
+    marginRight: 'auto',
+    marginLeft: '10%',
+    color:'white'
 };

@@ -10,60 +10,66 @@ export const stylePaper = {
 
 export const userName = { textAlign: 'center' };
 
-export const commandBar = {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    alignItems: 'center'
-};
 
 export const container = {
     display: 'flex',
     flexWrap: 'wrap',
-    height: '100%',    
+    height: '100%',
     backgroundColor: 'whitesmoke',
     textAlign: 'center',
     width: '90%',
     marginRight: 'auto',
     marginLeft: 'auto',
     verticalAlign: 'middle',
-    fontFamily: 'Nunito sans-serif', 
+    fontFamily: 'Nunito sans-serif',
 
 };
 
 export const header = {
-  width: '100%',
-  backgroundColor: '#008F95'
+    width: '100%',
+    backgroundColor: '#67BCDB',
+    color: '#E9B000',
+        // backgroundColor: '#008F95'
 }
 
 export const searchBox = {
-  marginTop:2,
-  width: '100%',    
-  backgroundColor: '#E9B000',
+    marginTop: 2,
+    color: '#E9B000',
+    width: '100%',
+    backgroundColor: 'whitesmoke',
 
 }
 export const avatar = {
-  marginTop:-5,
-  marginBottom:10
+    marginTop: -5,
+    marginBottom: 10
 }
 
 export const searchButton = {
-  backgroundColor:'#008F95'
-};  
+    backgroundColor: '#008F95'
+};
 
-export const productsPostedByUser ={
-  width: '100%',
-  backgroundColor: '#222',
-  // '#EB6E80',
-  marginTop:2,
+export const productsPostedByUser = {
+    width: '100%',
+    backgroundColor: '#A2AB58',
+    color: 'whitesmoke',
+    marginTop: 2,
+    fontFamily: 'Nunito',
+    fontWeight: 'bold',
+    fontSize: 20,
 }
 
-export const userGroups ={
-  width: '100%',
-  backgroundColor: '#E24E42',
-  marginTop:2,
-  marginRight: 'auto',
-  marginLeft: 'auto',
+export const userGroups = {
+    width: '100%',
+    backgroundColor: 'whitesmoke',
+    marginTop: 2,
+    marginRight: 'auto',
+    marginLeft: 'auto',
 }
 
+export const txtBoxStyle = {
+    fontFamily: 'Nunito',
+    fontSize: 15,
+    marginBottom: '3%',
+    marginRight: '3%',
+}
 

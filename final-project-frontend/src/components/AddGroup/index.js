@@ -3,28 +3,23 @@ import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
 import { formBox, groupsFormStyle, groupsFormTitle } from './constants.js';
 import TextField from 'material-ui/TextField';
-import {blue500} from 'material-ui/styles/colors';
-import {RaisedButton} from 'material-ui';
 import FlatButton from 'material-ui/FlatButton';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
-import TimePicker from 'material-ui/TimePicker';
 import { style } from './constants.js';
 import { addGroup } from '../../store/actions.js'
-import DatePicker from 'material-ui/DatePicker';
+
 
 
 class AddGroup extends Component {
 
        constructor(props) {
         super(props);
-        this.state = {value: ""};
                 
 }
 
     submitNewGroupData = (group) => {
-        group.prgroupDefault();
-        const addGroupAction = addGroup(this.state); 
+        event.preventDefault();
+        var adminId = this.props.currentUser.id;
+        const addGroupAction = addGroup(this.state,adminId); 
         console.log('this.state inside the form ', this.state);
         console.log('this.props ', this.props);
       
@@ -38,18 +33,6 @@ class AddGroup extends Component {
 
     };
 
-    groupCategoryInput = (event, index, value) => {
-           this.setState({
-            groupCategory: value
-          })
-               console.log( value)
-        }
-
-    dateInput = (event, date) => { 
-        this.setState({
-            datePosted: date,
-        })
-    };
 
     descriptionInput = (event) => {
         this.setState({
@@ -59,89 +42,46 @@ class AddGroup extends Component {
 
     groupImageUrlInput = (event) => {
         this.setState({
-            groupImageUrl: event.currentTarget.value
+            groupImage: event.currentTarget.value
         })
     };
 
-    pickupLocationInput = (event) => {
-        this.setState({
-            pickupLocation: event.currentTarget.value
-        })
-    };
-
-    pickupTimeInput = (event) => {
-        this.setState({
-            pickupTime: event.currentTarget.value
-        })
-    };
-
-
-    availableInput = (event, index, value) => {
-        if(value==1) {
-            this.setState(
-                {available: true}
-            )
-        }
-        if(value==2) {
-            this.setState(
-                {available: false}
-            )
-        }
-    };
-
+                            
     render () {
         return (
             <div>
-                <div style={groupsFormTitle} className="App-header">
+                <div style={groupsFormTitle}>
                     <h2>Add New Group</h2>
                 </div>
                 <div style={formBox}>
-                    <Paper style={groupsFormStyle} zDepth={3}>
+                    <Paper style={groupsFormStyle} zDepth={5}>
 
                             <form  style={style}  onSubmit={this.submitNewGroupData}>
                             
                                 {/*group Name*/}
                                   <TextField  style={style} 
                                     hintText="Group name"
-                                    floatingLabelText="group name"
+                                    floatingLabelText="Group name"
                                     onChange={this.groupNameInput}
                                   /><br />
 
-                               {/*groupCategory */}
-                                <div style={style} >
-                                <DropDownMenu value={this.state.value}  onChange={this.groupCategoryInput}>
-                                    <MenuItem value={"FOOD"} primaryText="FOOD" />
-                                    <MenuItem value={"FURNITURE"} primaryText="FURNITURE" />
-                                    <MenuItem value={"STATIONERY"} primaryText="STATIONERY" />
-                                    <MenuItem value={"CLOTHES"} primaryText="CLOTHES" />
-                                    <MenuItem value={"TOYS"} primaryText="TOYS" />
-                                    <MenuItem value={"CHILDREN"} primaryText="CHILDREN" />
-                                    <MenuItem value={"BABIES"} primaryText="BABIES" />
-                                    <MenuItem value={"TOOLS"} primaryText="TOOLS" />
-                                    <MenuItem value={"ELECTRONICS"} primaryText="ELECTRONICS" />
-                                    <MenuItem value={"MISCELLANEOUS"} primaryText="MISCELLANEOUS"/>
-                                  </DropDownMenu>
-                                  </div><br />
-
-
-
                                  {/*Description*/}
                                   <TextField  style={style} 
-                                    hintText="short description"
+                                    hintText="Short Description"
                                     floatingLabelText="Description"
                                     onChange={this.descriptionInput}
                                   /><br />
 
-
-
-                                  {/*Location*/}
+                                   {/*Image*/}
                                   <TextField  style={style} 
-                                    hintText="upload image"
-                                    floatingLabelText="Location"
-                                    onChange={this.descriptionInput}
+                                    hintText="Upload group image"
+                                    floatingLabelText="Upload group image"
+                                    onChange={this.groupImageUrlInput}
                                   /><br />
 
-                               <FlatButton style={style} backgroundColor="whitesmoke" hoverColor="green" label="Create Group" />
+                               <FlatButton style={style} backgroundColor="#A2AB58" 
+                                           hoverColor="#67BCDB" label="Start New Group"
+                                           onClick={this.submitNewGroupData}/> 
                             </form>
                         </Paper>
                 </div>

@@ -31,11 +31,10 @@ class Products extends Component {
 
   <div style={root}>
     <GridList
-    cols={3}
-      cellHeight={180}
+    cols={2}
+      cellHeight={200}
       style={gridList}
     >
-      <Subheader style={root} >You Shared these ..</Subheader>
       {products.map((tile) => (
         <GridTile  onTouchTap={this.handleZoom.bind(this, tile.id)}
           key={tile.id}

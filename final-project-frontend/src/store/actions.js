@@ -1,12 +1,12 @@
 // Actions
 export const LOGIN = 'login';
-export const DISPLAY_FEED = 'displayfeed';
 export const DISPLAY_USERS = 'fetchAllUsersData';
 export const DISPLAY_USER_DATA = 'fetchDataByUser';
 export const DISPLAY_ALL_PRODUCTS = 'fetchAllProductsData';
 export const DISPLAY_PRODUCT = 'fetchDataByProduct';
-export const ADD_PRODUCTS = 'fetchAllProductsData';
-export const ADD_PRODUCT = 'fetchProductData';
+export const ADD_GROUP = 'addGroup';
+export const ADD_PRODUCT = 'addProduct';
+export const REGISTER = 'register';
 export const SEARCH = 'search';
 
 
@@ -67,8 +67,8 @@ export const fetchDataByProduct = (id) => {
     }
 }
 
-export const addProduct = (addProductsFormState) => {
-    // console.log('submitted form data: ', addProductsFormState);
+export const addProduct = (addProductsFormState,userId) => {
+    console.log('submitted form data: ', addProductsFormState);
 
     const myHeaders = new Headers({
         'Content-Type': 'application/json',
@@ -81,40 +81,60 @@ export const addProduct = (addProductsFormState) => {
     }
 
     //post request to add new Product to DB
-
-    return fetch('http://localhost:8080/Products', config)
+    return fetch('http://localhost:8080/users/'+userId+'/createNewProduct', config)
         .then(results => results.json())
         .then(productData => {
-            // console.log('config ', config);
-            // console.log('fetched products', productData);
+            console.log('config ', config);
+            console.log('fetched products', productData);
+        })
+}
 
+export const addGroup = (addGroupFormState,adminId) => {
+    console.log('submitted form data: ', addGroupFormState);
+
+    const myHeaders = new Headers({
+        'Content-Type': 'application/json',
+    });
+
+    const config = {
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify(addGroupFormState),
+    }
+
+    //post request to add new Group to DB
+
+     return fetch('http://localhost:8080/users/'+ adminId +'/createNewGroup', config)
+        .then(results => results.json())
+        .then(groupData => {
+            console.log('config ', config);
+            console.log('fetched group', groupData);
         })
 }
 
 
 export const search = (searchedItem) => {
+ 
     return (dispatch) => {
         const myHeaders = new Headers({
             'Content-Type': 'application/json',
         });
 
-        const config = {
-            method: 'POST',
-            headers: myHeaders,
-            body: JSON.stringify(searchedItem)
-        }
+    const config = {
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify(searchedItem)
+    }
 
-        return fetch('http://localhost:8080/searchedproducts', config)
-            .then(data => data.json())
-            .then(productObj => {
+    return fetch('http://localhost:8080/searchedproducts', config)
+        .then(data => data.json())
+        .then(productObj => {
                 var products = Object.keys(productObj).length > 0 ? productObj : [];
                 if (products.length == 0) {
                     console.log('no products were found');
                 } else {
                     console.log('products were found');
-                    // console.log(products);
                 }
-
                 dispatch({
                     type: SEARCH,
                     data: productObj
@@ -123,23 +143,47 @@ export const search = (searchedItem) => {
     }
 }
 
+export const register = (addRegisterFormState) => {
+    console.log('submitted form data: ', addRegisterFormState);
+
+    const myHeaders = new Headers({
+        'Content-Type': 'application/json',
+    });
+
+    const config = {
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify(addRegisterFormState),
+    }
+
+    //post request to add new User to DB
+
+     return fetch('http://localhost:8080/register', config)
+        .then(results => results.json())
+        .then(userData => {
+            console.log('config ', config);
+            console.log('fetched user', userData);
+        })
+}
+
 
 export const login = (loginUser) => {
+    
     return (dispatch) => {
         const myHeaders = new Headers({
             'Content-Type': 'application/json',
         });
-        const config = {
-            method: 'POST',
-            headers: myHeaders,
-            body: JSON.stringify(loginUser)
-        }
+    const config = {
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify(loginUser)
+    }
 
         return fetch('http://localhost:8080/login/', config)
             .then(data => data.json())
             .then(userObj => {
                 if (userObj.id === null) {
-                    // console.log('the email and password combination was wrong');
+                // console.log('the email and password combination was wrong');
                 } else {
                     console.log('successful LOGIN');
                 }
@@ -152,20 +196,3 @@ export const login = (loginUser) => {
     }
 }
 
-// export const displayfeed = (currentUser) => {
-//     return (dispatch) => {
-//             const myHeaders = new Headers({
-//                 Authorization: `Bearer ${currentUser.token}`
-//             });
-//             const config = {
-//                 method: 'GET',
-//                 headers: myHeaders
-//             }
-//           return fetch('https://propulsion-blitz.herokuapp.com/api/feed', config)
-//                 .then(data => data.json())
-//                 .then(feed => {
-//                     console.log(feed);
-//                 });
-//         }
-
-// };

@@ -33,8 +33,8 @@ class UserGroups extends Component {
          <Slide
           key={slide.id}
           media={<img src= {slide.groupImage}/>}
-          mediaBackgroundStyle={{ backgroundColor: '#E24E42' }}
-          contentStyle={{ backgroundColor: red600,  fontFamily: 'Nunito', }}
+          mediaBackgroundStyle={{ backgroundColor: '#67BCDB' }}
+          contentStyle={{ backgroundColor: '#A2AB58',  fontFamily: 'Nunito', }}
           title={slide.groupName}
           subtitle={slide.description}
         />
