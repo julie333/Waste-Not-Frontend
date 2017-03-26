@@ -82,7 +82,7 @@ class CurrentUser extends Component {
                       <UserGroups groupsToRender={this.props.currentUser.groups}
                       router={this.props.router}/> 
                        </div>   
-                 <BottomNavigationUser router={this.props.router}/>        
+                 <BottomNavigationUser router={this.props.router} currentUser={this.props.currentUser}/>        
               
             </div>
         )

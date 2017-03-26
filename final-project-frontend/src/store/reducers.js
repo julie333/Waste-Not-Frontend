@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { LOGIN, DISPLAY_FEED, DISPLAY_USERS, DISPLAY_USER_DATA,
          DISPLAY_ALL_PRODUCTS,DISPLAY_PRODUCT, SEARCH, 
-         ADD_PRODUCT, ADD_GROUP, REGISTER } from './actions.js';
+         ADD_PRODUCT, ADD_GROUP, REGISTER, PRODUCTS_REQUESTED_BY_OTHERS } from './actions.js';
 
 function usersReducer(state = {}, action) {
     switch (action.type) {

@@ -8,7 +8,7 @@ class UserGroups extends Component {
 
     constructor(props) {
         super(props);
-                // console.log("UserGrp",this.props)
+        // console.log("UserGrp",this.props)
 
     }
 
@@ -16,34 +16,30 @@ class UserGroups extends Component {
 
         var groups = Object.keys(this.props.groupsToRender).length > 0 ? this.props.groupsToRender : [];
 
-      
-        // console.log('this.props.groupsToRender ', this.props.groupsToRender)
+      return (
+      <div className="UserGroups">
 
-        return (    
-<div className="UserGroups">
- 
-        <AutoRotatingCarousel
-        label="Your Groups"
-        open
-         mobile={true}
-         style={{ position: 'inherit', width: '100%',  fontFamily: 'Nunito',  }}
-     >
-      {groups.map((slide,index) => (
-    
-         <Slide
-          key={slide.id}
-          media={<img src= {slide.groupImage}/>}
-          mediaBackgroundStyle={{ backgroundColor: '#67BCDB' }}
-          contentStyle={{ backgroundColor: '#A2AB58',  fontFamily: 'Nunito', }}
-          title={slide.groupName}
-          subtitle={slide.description}
-        />
-           
-        ))}
-
-      </AutoRotatingCarousel>     
- 
-</div>
+        { Object.keys(groups).length > 0 &&
+   
+          <AutoRotatingCarousel
+          label="Your Groups"
+          open
+          mobile={true}
+          style={{ position: 'inherit', width: '100%',  fontFamily: 'Nunito',  }}
+          >
+            { groups.map((slide,index) => (      
+                <Slide
+                key={slide.id}
+                media={<img src= {slide.groupImage}/>}
+                mediaBackgroundStyle={{ backgroundColor: '#67BCDB' }}
+                contentStyle={{ backgroundColor: '#A2AB58',  fontFamily: 'Nunito', }}
+                title={slide.groupName}
+                subtitle={slide.description}
+                />        
+            ))}
+          </AutoRotatingCarousel>     
+         }
+      </div>
         )
     }
 }

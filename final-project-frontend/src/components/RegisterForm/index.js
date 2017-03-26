@@ -59,14 +59,21 @@ class RegisterForm extends Component {
 
     };
 
-    usernameInput = (event) => {
+    passwordInput = (event) => {
         this.setState({
-            username: event.currentTarget.value,
+            password: event.currentTarget.value,
         })
 
     };
 
-    locationInput = (event) => {
+    cityInput = (event) => {
+        this.setState({
+            location: event.currentTarget.value,
+        })
+
+    };
+
+    countryInput = (event) => {
         this.setState({
             location: event.currentTarget.value,
         })
@@ -141,14 +148,7 @@ class RegisterForm extends Component {
                                   />
                                   <Divider />
 
-                                {/*location*/}
-                                  <TextField  style={style} 
-                                    hintText="Location"
-                                    floatingLabelText="Location"
-                                    onChange={this.locationInput}
-                                    underlineShow={false}
-                                  />
-                                  <Divider />
+
                                   
                                <FlatButton style={buttonStyle} backgroundColor="#A2AB58" 
                                            hoverColor='#67BCDB' label="Sign Up" 
@@ -166,3 +166,21 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(RegisterForm);
+
+                                // {/*city*/}
+                                //   <TextField  style={style} 
+                                //     hintText="City"
+                                //     floatingLabelText="City"
+                                //     onChange={this.countryInput}
+                                //     underlineShow={false}
+                                //   />
+                                //   <Divider />
+
+                                //  {/*country*/}
+                                //   <TextField  style={style} 
+                                //     hintText="Country"
+                                //     floatingLabelText="Country"
+                                //     onChange={this.cityInput}
+                                //     underlineShow={false}
+                                //   />
+                                //   <Divider />

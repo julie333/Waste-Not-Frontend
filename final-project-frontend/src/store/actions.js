@@ -8,8 +8,7 @@ export const ADD_GROUP = 'addGroup';
 export const ADD_PRODUCT = 'addProduct';
 export const REGISTER = 'register';
 export const SEARCH = 'search';
-
-
+export const PRODUCTS_REQUESTED_BY_OTHERS = 'fetchProductsRequestedByOthers';
 
 export const fetchAllUsersData = () => {
     return (dispatch) => {
@@ -65,6 +64,15 @@ export const fetchDataByProduct = (id) => {
                 })
             });
     }
+}
+
+
+export const fetchProductsRequestedByOthers = (productId,userId) => {
+
+return (dispatch) => {
+       fetch('http://localhost:8080/users/'+ userId +'/productsRequested/'+ productId +'/toggle');
+    }
+
 }
 
 export const addProduct = (addProductsFormState,userId) => {
@@ -159,11 +167,11 @@ export const register = (addRegisterFormState) => {
     //post request to add new User to DB
 
      return fetch('http://localhost:8080/register', config)
-        .then(results => results.json())
-        .then(userData => {
-            console.log('config ', config);
-            console.log('fetched user', userData);
-        })
+        // .then(results => results.json())
+        // .then(userData => {
+        //     console.log('config ', config);
+        //     console.log('fetched user', userData);
+        // })
 }
 
 

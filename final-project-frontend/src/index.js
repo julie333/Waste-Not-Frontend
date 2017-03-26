@@ -16,6 +16,7 @@ import AddGroup from './components/AddGroup';
 import Products from './components/Products';
 import ProductId from './components/ProductId';
 import Searched from './components/Searched';
+import ProductsRequested from './components/ProductsRequested';
 
 
 import './index.css';
@@ -34,6 +35,7 @@ ReactDOM.render(
                  <Route path="/users/addNewProduct" component={ AddProduct } />
                  <Route path="/users/createNewGroup" component={ AddGroup } />
                  <Route path="/users/currentUser/groups" component={ UserGroups } /> 
+                 <Route path="/users/productsRequested/others" component={ ProductsRequested }/> 
                  <Route path="/products" component={ Products } />
                  <Route path="/searchedproducts" component={ Searched } />
                  <Route path="/products/:productId" component={ ProductId } />  

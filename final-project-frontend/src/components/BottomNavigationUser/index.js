@@ -7,11 +7,14 @@ import SocialGroupAdd from 'material-ui/svg-icons/social/group-add';
 import SocialNotifications from 'material-ui/svg-icons/social/notifications';
 import SocialShare from 'material-ui/svg-icons/social/share';
 import ActionShoppingCart from 'material-ui/svg-icons/action/shopping-cart';
+import Products from '../Products';
+ 
+import NotificationBadge from 'react-notification-badge';
+import {Effect} from 'react-notification-badge';
 
 const itemAdd = <ContentAddCircle/>;
 const groupAdd = <SocialGroupAdd/>;
 const nearbyIcon = <IconLocationOn />;
-const notifications = <SocialNotifications/>;
 const cart = <ActionShoppingCart/>;
 
 const bottomNavigation = {
@@ -28,6 +31,7 @@ class BottomNavigationUser extends Component {
         super(props);
         this.state = {
             selectedIndex: 0,
+            notificationsCount: 0,
         };
     }
 
@@ -58,11 +62,15 @@ class BottomNavigationUser extends Component {
 
     fetchNotifications = (index) => {
 
-        this.setState({
+
+      console.log('Reached')
+
+      this.setState({
             selectedIndex: index,
         })
-        this.props.router.push('/users/createNewGroup/');
-    };
+
+      this.props.router.push('/users/productsRequested/others');
+    }
 
     viewCart = (index) => {
 
@@ -73,42 +81,46 @@ class BottomNavigationUser extends Component {
     };
 
 
-
-
     render() {
+
+       const notificationsCount = Object.keys(this.props.currentUser).length > 0 ? 
+           this.props.currentUser.productsRequestedByOthers.length: 0;
+
+        const notifications = <div><NotificationBadge count= {notificationsCount} effect={Effect.SCALE}/><SocialNotifications/></div>;
+        
         return (
 
             <Paper style={bottomNavigation} zDepth={4}>
-        <BottomNavigation selectedIndex={this.state.selectedIndex}>
-          <BottomNavigationItem
-            label="Items"
-            icon={itemAdd}
-            onTouchTap={() => this.addProduct(0)}
-          />
-          <BottomNavigationItem
-            label="Groups"
-            icon={groupAdd}
-            onTouchTap={() => this.addGroup(1)}
-          />
-          <BottomNavigationItem
-            label="Nearby"
-            icon={nearbyIcon}
-            onTouchTap={() => this.locateNearby(2)}
-          />
-          <BottomNavigationItem
-            label="Notifications"
-            icon={notifications}
-            onTouchTap={() => this.fetchNotifications(3)}
-          />
-          <BottomNavigationItem
-            label="List"
-            icon={cart}
-            onTouchTap={() => this.viewCart(4)}
-          />
-        </BottomNavigation>
-      </Paper>
-        );
+                <BottomNavigation selectedIndex={this.state.selectedIndex}>
+                    <BottomNavigationItem
+                      label="Items"
+                      icon={itemAdd}
+                      onTouchTap={() => this.addProduct(0)}
+                    />
+                    <BottomNavigationItem
+                      label="Groups"
+                      icon={groupAdd}
+                      onTouchTap={() => this.addGroup(1)}
+                    />
+                    <BottomNavigationItem
+                      label="Nearby"
+                      icon={nearbyIcon}
+                      onTouchTap={() => this.locateNearby(2)}
+                    />
+                    <BottomNavigationItem
+                      label="Notifications"
+                      icon={notifications}
+                      onTouchTap={() => this.fetchNotifications(3)}
+                    />
+                    <BottomNavigationItem
+                      label="List"
+                      icon={cart}
+                      onTouchTap={() => this.viewCart(4)}
+                    />
+                </BottomNavigation>
+            </Paper>
+          );
+       }
     }
-}
 
 export default BottomNavigationUser;

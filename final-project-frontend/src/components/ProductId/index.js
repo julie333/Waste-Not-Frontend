@@ -4,7 +4,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Toggle from 'material-ui/Toggle';
 import { connect } from 'react-redux';
 import ToggleButton from '../ToggleButton';
-import { fetchDataByProduct } from '../../store/actions.js'
+import { fetchDataByProduct, fetchProductsRequestedByOthers } from '../../store/actions.js'
 import IconButton from 'material-ui/IconButton';
 import CommunicationChatBubbleOutline from 'material-ui/svg-icons/communication/chat-bubble-outline';
 import ActionBookmarkBorder from 'material-ui/svg-icons/action/bookmark-border';
@@ -30,12 +30,15 @@ class ProductId extends Component {
             });
     }
   
-    requestItem = () => {
-        // Add To the owners notifications
+    requestItem = (event) => {
+
+        const fetchAction = fetchProductsRequestedByOthers(event.currentTarget.id,this.props.currentUser.id);
+        this.props.dispatch(fetchAction); 
     }
 
     addToList = () => {
-        // Add To the current users list
+      
+
     }
 
     render() {
@@ -44,7 +47,7 @@ class ProductId extends Component {
        console.log("productToRenderlength",   productToRender.length)
         return (
             <div className="ProductId" style={containerStyle}>
-            {   productToRender.length>0?"False":"True" &&
+            {   productToRender.length>0?false:true &&
                 Object.keys(productToRender).length > 0 &&
             
                 <Card style={style}>
@@ -66,8 +69,19 @@ class ProductId extends Component {
                             {<IconButton><ActionDone color="green" /></IconButton>}{productToRender.available?"Available":"Not Available"} <br/>   
                         </CardText>                        
                         <CardActions>               
-                            <FlatButton style={buttonStyle} backgroundColor="whitesmoke" hoverColor="green" label="Request Item" onClick={this.requestItem.bind(this)}/>
-                            <FlatButton style={buttonStyle} backgroundColor="whitesmoke" hoverColor="green" label="Add to List" onClick={this.addToList.bind(this)}/>
+                            <FlatButton id = {productToRender.id}
+                                        style={buttonStyle} 
+                                        backgroundColor="whitesmoke"
+                                        hoverColor="green" 
+                                        label="Request Item" 
+                                        onClick={this.requestItem.bind(this)}/>
+
+                            <FlatButton id = {productToRender.id}
+                                        style={buttonStyle} 
+                                        backgroundColor="whitesmoke" 
+                                        hoverColor="green" 
+                                        label="Add to List" 
+                                        onClick={this.addToList.bind(this)}/>
                         </CardActions>
                 </Card>
         }
