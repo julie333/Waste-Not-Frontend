@@ -15,7 +15,6 @@ import {Effect} from 'react-notification-badge';
 const itemAdd = <ContentAddCircle/>;
 const groupAdd = <SocialGroupAdd/>;
 const nearbyIcon = <IconLocationOn />;
-const cart = <ActionShoppingCart/>;
 
 const bottomNavigation = {
 
@@ -62,9 +61,6 @@ class BottomNavigationUser extends Component {
 
     fetchNotifications = (index) => {
 
-
-      console.log('Reached')
-
       this.setState({
             selectedIndex: index,
         })
@@ -77,16 +73,27 @@ class BottomNavigationUser extends Component {
         this.setState({
             selectedIndex: index,
         })
-        this.props.router.push('/users/createNewGroup/');
+      this.props.router.push('/users/productsRequested/currentUser');
     };
 
 
     render() {
 
-       const notificationsCount = Object.keys(this.props.currentUser).length > 0 ? 
+        const notificationsCount = Object.keys(this.props.currentUser).length > 0 ? 
            this.props.currentUser.productsRequestedByOthers.length: 0;
 
-        const notifications = <div><NotificationBadge count= {notificationsCount} effect={Effect.SCALE}/><SocialNotifications/></div>;
+        const cartCount = Object.keys(this.props.currentUser).length > 0 ? 
+           this.props.currentUser.productsRequestedByUser.length: 0;
+
+        const notifications = <div>
+                                  <NotificationBadge count= {notificationsCount} effect={Effect.SCALE}/>
+                                  <SocialNotifications/>
+                              </div>;
+
+        const cart =  <div>
+                          <NotificationBadge count= {cartCount} effect={Effect.SCALE}/>
+                          <ActionShoppingCart/>
+                      </div>;
         
         return (
 

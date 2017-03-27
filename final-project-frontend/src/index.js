@@ -16,7 +16,10 @@ import AddGroup from './components/AddGroup';
 import Products from './components/Products';
 import ProductId from './components/ProductId';
 import Searched from './components/Searched';
-import ProductsRequested from './components/ProductsRequested';
+import ProductsRequestedByOthers from './components/ProductsRequestedByOthers';
+import ProductsRequestedByUser from './components/ProductsRequestedByUser';
+import ImageUpload from './components/ImageUpload';
+import Groups from './components/Groups';
 
 
 import './index.css';
@@ -35,18 +38,16 @@ ReactDOM.render(
                  <Route path="/users/addNewProduct" component={ AddProduct } />
                  <Route path="/users/createNewGroup" component={ AddGroup } />
                  <Route path="/users/currentUser/groups" component={ UserGroups } /> 
-                 <Route path="/users/productsRequested/others" component={ ProductsRequested }/> 
+                 <Route path="/users/productsRequested/others" component={ ProductsRequestedByOthers }/> 
+                 <Route path="/users/productsRequested/currentUser" component={ ProductsRequestedByUser } /> 
                  <Route path="/products" component={ Products } />
+                 <Route path="/groups" component={ Groups } />
                  <Route path="/searchedproducts" component={ Searched } />
-                 <Route path="/products/:productId" component={ ProductId } />  
+                 <Route path="/products/:productId" component={ ProductId } />   
             </Router>
         </MuiThemeProvider>
     </Provider>,
     document.getElementById('root')
 );
 
-
-                 // <Route path="/users/:userId" component={ UserId } />  
-                 // <Route path="/users/:username" component={ UserName } />  
-                 // <Route path="/users/:userId/groups/:groupId/toggle" component={ JoinLeaveGroup } /> 
 

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
-import { formBox, groupsFormStyle, groupsFormTitle } from './constants.js';
+import { formBox, groupsFormStyle, groupsFormTitle,imageStyle, buttonStyle,style } from './constants.js';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
-import { style } from './constants.js';
-import { addGroup } from '../../store/actions.js'
+import { addGroup } from '../../store/actions.js';
+import ImageUpload from '../ImageUpload';
 
 
 
@@ -40,10 +40,11 @@ class AddGroup extends Component {
         })
     };
 
-    groupImageUrlInput = (event) => {
+    imageUrlInput = (groupImage) => {
         this.setState({
-            groupImage: event.currentTarget.value
+            groupImage: groupImage,
         })
+        console.log("Success",groupImage)
     };
 
                             
@@ -72,14 +73,16 @@ class AddGroup extends Component {
                                     onChange={this.descriptionInput}
                                   /><br />
 
-                                   {/*Image*/}
-                                  <TextField  style={style} 
-                                    hintText="Upload group image"
-                                    floatingLabelText="Upload group image"
-                                    onChange={this.groupImageUrlInput}
-                                  /><br />
+                                  {/*Image*/}
+                                  <p  style={style} >Upload Group Image</p>
+                                  {console.log(this.props)}
+                                  <div style={imageStyle} >
+                                  <ImageUpload 
+                                  imageUrlInput={this.imageUrlInput}
+                                  />
+                                  </div>
 
-                               <FlatButton style={style} backgroundColor="#A2AB58" 
+                               <FlatButton style={buttonStyle} backgroundColor="#A2AB58" 
                                            hoverColor="#67BCDB" label="Start New Group"
                                            onClick={this.submitNewGroupData}/> 
                             </form>

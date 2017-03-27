@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
-import { formBox, usersFormStyle, usersFormTitle,buttonStyle } from './constants.js';
+import { formBox, usersFormStyle, usersFormTitle,buttonStyle,imageStyle } from './constants.js';
 import TextField from 'material-ui/TextField';
 import { blue500 } from 'material-ui/styles/colors';
 import { RaisedButton } from 'material-ui';
@@ -13,6 +13,7 @@ import { style } from './constants.js';
 import { register } from '../../store/actions.js'
 import DatePicker from 'material-ui/DatePicker';
 import Divider from 'material-ui/Divider';
+import ImageUpload from '../ImageUpload';
 
 
 class RegisterForm extends Component {
@@ -80,6 +81,13 @@ class RegisterForm extends Component {
 
     };
 
+    imageUrlInput = (avatar) => {
+        this.setState({
+            avatar: avatar,
+        })
+        console.log("Success",avatar)
+    };
+
 
     render() {
         return (
@@ -120,6 +128,17 @@ class RegisterForm extends Component {
                                   <Divider />
 
 
+                                  {/*Avatar*/}
+                                  <p  style={style} >Upload Your Avatar</p>
+                                  {console.log(this.props)}
+                                  <div style={imageStyle} >
+                                  <ImageUpload 
+                                  imageUrlInput={this.imageUrlInput}
+                                  />
+                                  </div>
+                                  <Divider />
+
+
                                   {/*username*/}
                                   <TextField  style={style} 
                                     hintText="Username"
@@ -138,18 +157,7 @@ class RegisterForm extends Component {
                                     type="password"
                                  />
                                   <Divider />
-
-                                  {/*avatar*/}
-                                  <TextField  style={style} 
-                                    hintText="Avatar"
-                                    floatingLabelText="Upload Avatar"
-                                    onChange={this.avatarInput}
-                                   underlineShow={false}
-                                  />
-                                  <Divider />
-
-
-                                  
+ 
                                <FlatButton style={buttonStyle} backgroundColor="#A2AB58" 
                                            hoverColor='#67BCDB' label="Sign Up" 
                                            onClick={this.submitNewUserData}/>

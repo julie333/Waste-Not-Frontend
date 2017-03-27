@@ -18,7 +18,7 @@ class CurrentUser extends Component {
         super(props);
 
         this.state = {
-            productName: ''
+            searchedProduct: ''
         };
 
     }
@@ -26,7 +26,7 @@ class CurrentUser extends Component {
     handleSearchBoxChange = (event) => {
 
         this.setState({
-            productName: event.currentTarget.value
+            searchedProduct: event.currentTarget.value
         })
     };
 
@@ -38,12 +38,18 @@ class CurrentUser extends Component {
         this.props.dispatch(searchAction)
             .then(() => {
                 this.setState({
-                    productName: '',
+                    searchedProduct: '',
                 })
             })
             .then(() => {
                 this.props.router.push('/searchedproducts')
             })
+    };
+
+
+    getQuote = () => {
+        
+        return fetch('http://localhost:8080/quotes/');
     };
 
 
@@ -61,8 +67,7 @@ class CurrentUser extends Component {
                 <div className="searchBox" style={searchBox}>
 
                      <blockquote>
-                     “Earth provides enough to satisfy every man's needs, but not every man's greed.” 
-                      <footer>— Gandhi</footer>
+                     {this.getQuote}
                      </blockquote>
                       <TextField  style={txtBoxStyle} 
                                     hintText="What would you like to save ?"

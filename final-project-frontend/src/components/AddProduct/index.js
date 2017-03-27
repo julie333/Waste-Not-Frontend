@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
-import { formBox, productsFormStyle, productsFormTitle,style,dropdownStyle } from './constants.js';
+import { formBox, productsFormStyle, productsFormTitle,style,dropdownStyle, imageStyle, buttonStyle } from './constants.js';
 import TextField from 'material-ui/TextField';
 import { blue500 } from 'material-ui/styles/colors';
 import { RaisedButton } from 'material-ui';
@@ -11,6 +11,7 @@ import MenuItem from 'material-ui/MenuItem';
 import TimePicker from 'material-ui/TimePicker';
 import { addProduct } from '../../store/actions.js'
 import DatePicker from 'material-ui/DatePicker';
+import ImageUpload from '../ImageUpload';
 
 
 class AddProduct extends Component {
@@ -65,10 +66,11 @@ class AddProduct extends Component {
         })
     };
 
-    productImageUrlInput = (event) => {
+    imageUrlInput = (productImageUrl) => {
         this.setState({
-            productImageUrl: event.currentTarget.value
+            productImageUrl: productImageUrl,
         })
+        console.log("Success",productImageUrl)
     };
 
     pickupLocationInput = (event) => {
@@ -117,15 +119,15 @@ class AddProduct extends Component {
                             
                                 {/*Item Name*/}
                                   <TextField  style={style} 
-                                    hintText="Item name"
-                                    floatingLabelText="Item name"
+                                    hintText="Item Name"
+                                    floatingLabelText="Item Name"
                                     onChange={this.productNameInput}
                                   /><br />
 
                                {/*productCategory */}
                                 <div style={dropdownStyle} >
                                 <DropDownMenu value={this.state.valueCategory} onChange={this.productCategoryInput}>
-                                    <MenuItem value={0} primaryText="Select Category" />
+                                    <MenuItem value={0} primaryText="Select Item Category" />
                                     <MenuItem value={"FOOD"} primaryText="FOOD" />
                                     <MenuItem value={"FURNITURE"} primaryText="FURNITURE" />
                                     <MenuItem value={"STATIONERY"} primaryText="STATIONERY" />
@@ -137,7 +139,7 @@ class AddProduct extends Component {
                                     <MenuItem value={"ELECTRONICS"} primaryText="ELECTRONICS" />
                                     <MenuItem value={"MISCELLANEOUS"} primaryText="MISCELLANEOUS"/>
                                   </DropDownMenu>
-                                  </div><br />
+                                  </div>
 
                                   {/*Date*/}
                                   <div style={style} >
@@ -147,14 +149,13 @@ class AddProduct extends Component {
                                   autoOk={true}
                                   onChange={this.dateInput}/>
                                   </div>
-                                  <br />
 
                                  {/*Description*/}
                                   <TextField  style={style} 
                                     hintText="Short Description"
                                     floatingLabelText="Description"
                                     onChange={this.descriptionInput}
-                                  /><br />
+                                  />
 
 
                                   {/*Time*/}
@@ -164,7 +165,6 @@ class AddProduct extends Component {
                                     autoOk={true}
                                     onChange={this.pickupTimeInput}/>
                                   </div>
-                                  <br />
 
                                   {/*Location*/}
                                   <TextField  style={style} 
@@ -173,23 +173,32 @@ class AddProduct extends Component {
                                     onChange={this.pickupLocationInput}
                                   /><br />
 
+                                  {/*Image*/}
+                                  <p  style={style} >Upload Image of Item</p>
+                                  {console.log(this.props)}
+                                  <div style={imageStyle} >
+                                  <ImageUpload 
+                                  imageUrlInput={this.imageUrlInput}
+                                  />
+                                  </div>
+
               
 
                                 {/*available*/}
                                 <div style={dropdownStyle} >
                                 <DropDownMenu value={this.state.valueAvailability} onChange={this.availableInput}>
-                                    <MenuItem value={0} primaryText="Select Availability" />
+                                    <MenuItem value={0} primaryText="Select Item Availability" />
                                     <MenuItem value={1} primaryText="Available" />
                                     <MenuItem value={2} primaryText="Unavailable"/>
                                   </DropDownMenu>
 
                                   </div><br />
 
-                               <FlatButton style={style} backgroundColor="#A2AB58" 
+                               <FlatButton style={buttonStyle} backgroundColor="#A2AB58" 
                                            hoverColor='#67BCDB' label="Post Item" 
                                            onClick={this.submitNewProductData}/>
 
-                                <FlatButton style={style} backgroundColor="#A2AB58" 
+                                <FlatButton style={buttonStyle} backgroundColor="#A2AB58" 
                                            hoverColor='#67BCDB' label="Post To Group" 
                                            onClick={this.submitNewProductData}/>
                             </form>
