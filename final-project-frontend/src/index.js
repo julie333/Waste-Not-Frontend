@@ -16,7 +16,7 @@ import AddGroup from './components/AddGroup';
 import Products from './components/Products';
 import ProductId from './components/ProductId';
 import Searched from './components/Searched';
-import ProductsRequestedByOthers from './components/ProductsRequestedByOthers';
+import Notifications from './components/Notifications';
 import ProductsRequestedByUser from './components/ProductsRequestedByUser';
 import ImageUpload from './components/ImageUpload';
 import Groups from './components/Groups';
@@ -38,7 +38,7 @@ ReactDOM.render(
                  <Route path="/users/addNewProduct" component={ AddProduct } />
                  <Route path="/users/createNewGroup" component={ AddGroup } />
                  <Route path="/users/currentUser/groups" component={ UserGroups } /> 
-                 <Route path="/users/productsRequested/others" component={ ProductsRequestedByOthers }/> 
+                 <Route path="/notifications" component={ Notifications }/> 
                  <Route path="/users/productsRequested/currentUser" component={ ProductsRequestedByUser } /> 
                  <Route path="/products" component={ Products } />
                  <Route path="/groups" component={ Groups } />

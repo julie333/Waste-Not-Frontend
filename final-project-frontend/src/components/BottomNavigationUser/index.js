@@ -65,7 +65,7 @@ class BottomNavigationUser extends Component {
             selectedIndex: index,
         })
 
-      this.props.router.push('/users/productsRequested/others');
+      this.props.router.push('/notifications');
     }
 
     viewCart = (index) => {
@@ -80,7 +80,12 @@ class BottomNavigationUser extends Component {
     render() {
 
         const notificationsCount = Object.keys(this.props.currentUser).length > 0 ? 
-           this.props.currentUser.productsRequestedByOthers.length: 0;
+           this.props.currentUser.productsRequestedByOthers.length + 
+           this.props.currentUser.groupRequests.length +
+           this.props.currentUser.friendsRequests.length : 0;
+
+           console.log('this.props',this.props)
+           console.log('notificationsCount',notificationsCount)
 
         const cartCount = Object.keys(this.props.currentUser).length > 0 ? 
            this.props.currentUser.productsRequestedByUser.length: 0;

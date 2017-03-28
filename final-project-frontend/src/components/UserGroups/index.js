@@ -8,21 +8,17 @@ class UserGroups extends Component {
 
     constructor(props) {
         super(props);
-        // console.log("UserGrp",this.props)
-
     }
 
 
-  displayGroups = () => {
-          event.preventDefault();
-
-         this.setState({
+    displayGroups = () => {
+        event.preventDefault();
+        this.setState({
             groupsToRender: this.props.groupsToRender
         })
 
+        console.log( this.props.groupsToRender)
         this.props.router.push('/groups');
-        this.props.groupsToRender
-
     };
 
 
@@ -30,8 +26,8 @@ class UserGroups extends Component {
 
         var groups = Object.keys(this.props.groupsToRender).length > 0 ? this.props.groupsToRender : [];
 
-      return (
-      <div className="UserGroups">
+        return (
+            <div className="UserGroups">
 
         { Object.keys(groups).length > 0 &&
    
