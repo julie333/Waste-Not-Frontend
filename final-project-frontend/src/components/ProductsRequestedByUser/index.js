@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Products from '../Products';
+import HomeIcon from '../HomeIcon';
+import BottomNavigationUser from '../BottomNavigationUser';
 
 const style = {
     fontFamily: 'Nunito',
     fontWeight :'bold',
-    fontSize: 40,
+    fontSize: 30,
     width: '90%',
-    color: '#ffd900',
-    backgroundColor:'#43403d',
+    color: '#67BCDB',
+    backgroundColor:'whitesmoke',
     marginRight: 'auto',
     marginLeft: 'auto',
     textAlign: 'center',
@@ -24,10 +26,14 @@ class ProductsRequestedByUser extends Component {
           var products = Object.keys(this.props.currentUser).length > 0 ? this.props.currentUser.productsRequestedByUser : [];
         
         return (
+            <div style={{ backgroundColor:'#67BCDB', }}>
             <div className="ProductsRequestedByUser" style={style}>
-            <h2>Your List of Requested Items</h2>
+            <HomeIcon router={this.props.router}/>
+            <h2>ITEMS REQUESTED BY YOU</h2>
               <Products productsToRender={ products }
               router={this.props.router}/> 
+            </div>
+             <BottomNavigationUser router={this.props.router} currentUser={this.props.currentUser}/>        
             </div>
         )
     }

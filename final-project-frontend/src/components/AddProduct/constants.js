@@ -2,11 +2,11 @@ export const productsFormTitle = {
     width: '100%',
     height: '80%',
     textAlign: 'center',
-    backgroundColor: '#A2AB58',
+    backgroundColor: '#67BCDB',
     fontFamily: 'Nunito',
     fontSize: 25,
     display: 'inline-block',
-    color: 'white',
+    color: 'whitesmoke',
     fontWeight: 'bold',
 }
 
@@ -18,7 +18,7 @@ export const productsFormStyle = {
 export const formBox = {
     display: 'flex',
     justifyContent: 'space-around',
-    backgroundColor: '#67BCDB',
+    backgroundColor: 'whitesmoke',
 }
 
 export const style = {

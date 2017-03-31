@@ -1,28 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
-import { formBox, groupsFormStyle, groupsFormTitle,imageStyle, buttonStyle,style } from './constants.js';
+import { formBox, groupsFormStyle, groupsFormTitle, imageStyle, buttonStyle, style } from './constants.js';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import { addGroup } from '../../store/actions.js';
 import ImageUpload from '../ImageUpload';
-
-
+import Interaction from '../Interaction';
+import HomeIcon from '../HomeIcon';
 
 class AddGroup extends Component {
 
-       constructor(props) {
+    constructor(props) {
         super(props);
-                
-}
+        this.state = {
+            open: false,
+        };
+
+    }
 
     submitNewGroupData = (group) => {
         event.preventDefault();
+
+         this.setState({
+            open: true,
+        })
+
+        delete this.state.open;
         var adminId = this.props.currentUser.id;
-        const addGroupAction = addGroup(this.state,adminId); 
+        const addGroupAction = addGroup(this.state, adminId);
         console.log('this.state inside the form ', this.state);
         console.log('this.props ', this.props);
-      
+
+
     };
 
 
@@ -44,14 +54,15 @@ class AddGroup extends Component {
         this.setState({
             groupImage: groupImage,
         })
-        console.log("Success",groupImage)
+        console.log("Success", groupImage)
     };
 
-                            
-    render () {
+
+    render() {
         return (
             <div>
                 <div style={groupsFormTitle}>
+                    <HomeIcon router={this.props.router}/>
                     <h2>Add New Group</h2>
                 </div>
                 <div style={formBox}>
@@ -82,11 +93,13 @@ class AddGroup extends Component {
                                   />
                                   </div>
 
-                               <FlatButton style={buttonStyle} backgroundColor="#A2AB58" 
-                                           hoverColor="#67BCDB" label="Start New Group"
+                               <FlatButton style={buttonStyle} backgroundColor="#67BCDB" 
+                                           hoverColor="#ff4081" label="Start New Group"
                                            onClick={this.submitNewGroupData}/> 
+                               <Interaction open = {this.state.open} message = "New Group Created"/>
                             </form>
                         </Paper>
+                        <br/><br/>
                 </div>
             </div>
         )
@@ -98,15 +111,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(AddGroup);
-
-
-
-
-
-
-
-      
-             
-       
-
-

@@ -1,21 +1,6 @@
-export const styleRaisedButton = { margin: 12 };
-
-export const stylePaper = {
-    height: 100,
-    width: 100,
-    margin: 20,
-    textAlign: 'center',
-};
-
-
-export const userName = { textAlign: 'center' };
-
-
 export const container = {
-    display: 'flex',
-    flexWrap: 'wrap',
     height: '100%',
-    backgroundColor: 'lightgray',
+    backgroundColor: 'whitesmoke',
     textAlign: 'center',
     width: '90%',
     marginRight: 'auto',
@@ -24,32 +9,28 @@ export const container = {
     fontFamily: 'Nunito',
 
 };
-
 export const header = {
     width: '100%',
     backgroundColor: '#67BCDB',
+    color: 'whitesmoke',
 }
 
-export const searchBox = {
-    marginTop: 3,
+export const members = {
+    fontFamily: 'Nunito',
+    fontSize: 15,
+    fontWeight: 'bold',
+    marginTop: 2,
+    color: '#A2AB58',
     width: '100%',
     backgroundColor: 'whitesmoke',
 
 }
-export const avatar = {
-    marginTop: -5,
-    marginBottom: 10
-}
 
-export const searchButton = {
-    backgroundColor: '#008F95'
-};
-
-export const productsPostedByUser = {
+export const productsPostedToGroup = {
     width: '100%',
     backgroundColor: '#67BCDB',
     color: 'whitesmoke',
-    marginTop: 3,
+    marginTop: 2,
     fontFamily: 'Nunito',
     fontWeight: 'bold',
     fontSize: 20,
@@ -58,7 +39,7 @@ export const productsPostedByUser = {
 export const userGroups = {
     width: '100%',
     backgroundColor: 'whitesmoke',
-    marginTop: 3,
+    marginTop: 2,
     marginRight: 'auto',
     marginLeft: 'auto',
 }
@@ -69,4 +50,3 @@ export const txtBoxStyle = {
     marginBottom: '3%',
     marginRight: '3%',
 }
-

@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import './index.css';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import { login } from '../../store/actions.js'
-import { displayfeed } from '../../store/actions.js'
+import { login } from '../../store/actions.js';
+import Logo from '../Logo';
 
 
 class Login extends Component {
@@ -15,7 +15,7 @@ class Login extends Component {
             username: '',
             password: '',
         };
-    }  
+    }
 
 
     handleLogin = (event) => {
@@ -26,17 +26,21 @@ class Login extends Component {
         const loginAction = login(this.state);
 
         this.props.dispatch(loginAction)
-            .then(()=> {
-               this.setState({
-                    username:'',
-                    password:'',
+            .then(() => {
+                this.setState({
+                    username: '',
+                    password: '',
                 })
             })
             .then(() => {
-                  this.props.router.push('/users/currentUser')
-                })
 
-};
+                if (this.props.currentUser.email === null) {
+                } 
+                else {
+                    this.props.router.push('/users/currentUser');
+                }
+            })
+    };
 
 
     handleRegister = (event) => {
@@ -65,20 +69,21 @@ class Login extends Component {
     render() {
         return (
             <div className="Login">
-		<div className="Login-header">
-			<h2>Never Waste another Sandwich!</h2>
-		</div>
-			<form onSubmit={this.handleLogin}>	<br/>
-				<TextField hintText="Username" floatingLabelText="Username" 
-		 			onChange={this.handleUsernameChange}/> <br/>
-				<TextField hintText="Password" floatingLabelText="Password" type="password"
-      	  			onChange={this.handlePasswordChange}/>	<br/><br/>
-    	 		<RaisedButton label="Login" primary={true} style={ { marginRight: '20px' } }
-    	 			onClick={this.handleLogin}/>
-    	 		<RaisedButton label="Sign Up" primary={true} 
-    	 		 	onClick={this.handleRegister}/>	 	
-	  		</form>
-	</div>
+        <div className="Login-header">
+             <Logo/>
+            <h2>Never Waste another Sandwich!</h2>
+        </div>
+            <form onSubmit={this.handleLogin}>  <br/>
+                <TextField hintText="Username" floatingLabelText="Username" 
+                    onChange={this.handleUsernameChange}/> <br/>
+                <TextField hintText="Password" floatingLabelText="Password" type="password"
+                    onChange={this.handlePasswordChange}/>  <br/><br/>
+                <RaisedButton label="Login" primary={true} style={ { marginRight: '20px' } }
+                    onClick={this.handleLogin}/>
+                <RaisedButton label="Sign Up" primary={true} 
+                    onClick={this.handleRegister}/>     
+            </form>
+    </div>
         );
     }
 }

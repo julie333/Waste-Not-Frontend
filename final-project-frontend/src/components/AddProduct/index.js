@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
-import { formBox, productsFormStyle, productsFormTitle,style,dropdownStyle, imageStyle, buttonStyle } from './constants.js';
+import { formBox, productsFormStyle, productsFormTitle, style, dropdownStyle, imageStyle, buttonStyle } from './constants.js';
 import TextField from 'material-ui/TextField';
 import { blue500 } from 'material-ui/styles/colors';
 import { RaisedButton } from 'material-ui';
@@ -9,9 +9,11 @@ import FlatButton from 'material-ui/FlatButton';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import TimePicker from 'material-ui/TimePicker';
-import { addProduct } from '../../store/actions.js'
+import { addProduct, addProductToGroup } from '../../store/actions.js'
 import DatePicker from 'material-ui/DatePicker';
 import ImageUpload from '../ImageUpload';
+import Interaction from '../Interaction';
+import HomeIcon from '../HomeIcon';
 
 
 class AddProduct extends Component {
@@ -19,22 +21,50 @@ class AddProduct extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          valueCategory:0,
-          valueAvailability: 0
+            valueCategory: 0,
+            valueAvailability: 0,
+            open: false,
+            group: 0,
         };
 
 
     }
 
-    submitNewProductData = (product) => {
+    submitNewProductData = () => {
+
+        this.setState({
+            open: true,
+
+        })
+
         event.preventDefault();
+        delete this.state.open;
         delete this.state.valueCategory;
         delete this.state.valueAvailability;
+        delete this.state.group;
         var userId = this.props.currentUser.id;
-        const addProductAction = addProduct(this.state,userId);
+        const addProductAction = addProduct(this.state, userId);
         console.log('this.state inside the form ', this.state);
         console.log('this.props ', this.props);
+    };
 
+    submitNewProductDataToGroup = () => {
+
+        this.setState({
+            open: true,
+
+        })
+
+        event.preventDefault();
+        var userId = this.props.currentUser.id;
+        var groupId = this.state.group;
+        delete this.state.open;
+        delete this.state.valueCategory;
+        delete this.state.valueAvailability;
+        delete this.state.group;
+        const addProductAction = addProductToGroup(this.state, userId, groupId);
+        console.log('this.state inside the form ', this.state);
+        console.log('this.props ', this.props);
     };
 
 
@@ -45,6 +75,14 @@ class AddProduct extends Component {
         })
 
     };
+
+    groupInput = (event, index, value) => {
+        this.setState({
+            group: value,
+        })
+        console.log(value)
+    }
+
 
     productCategoryInput = (event, index, value) => {
         this.setState({
@@ -70,7 +108,7 @@ class AddProduct extends Component {
         this.setState({
             productImageUrl: productImageUrl,
         })
-        console.log("Success",productImageUrl)
+        console.log("Success", productImageUrl)
     };
 
     pickupLocationInput = (event) => {
@@ -85,7 +123,7 @@ class AddProduct extends Component {
     //     })
     // };
 
-    pickupTimeInput = (event,time) => {
+    pickupTimeInput = (event, time) => {
         this.setState({
             pickupTime: time
         })
@@ -93,8 +131,8 @@ class AddProduct extends Component {
 
 
     availableInput = (event, index, value) => {
-       
-      this.setState({ valueAvailability: value })
+
+        this.setState({ valueAvailability: value })
 
         if (value == 1) {
             this.setState({ available: true })
@@ -108,8 +146,9 @@ class AddProduct extends Component {
 
 
         return (
-            <div>     
+            <div>   
              <div  style={productsFormTitle}>
+                       <HomeIcon router={this.props.router}/> 
                        <h2>Post New Item</h2>
                 </div>
                 <div style={formBox}>
@@ -180,9 +219,7 @@ class AddProduct extends Component {
                                   <ImageUpload 
                                   imageUrlInput={this.imageUrlInput}
                                   />
-                                  </div>
-
-              
+                                  </div>           
 
                                 {/*available*/}
                                 <div style={dropdownStyle} >
@@ -192,17 +229,31 @@ class AddProduct extends Component {
                                     <MenuItem value={2} primaryText="Unavailable"/>
                                   </DropDownMenu>
 
-                                  </div><br />
+                                  </div>
 
-                               <FlatButton style={buttonStyle} backgroundColor="#A2AB58" 
-                                           hoverColor='#67BCDB' label="Post Item" 
+                                {/*group input*/ console.log(this.props.currentUser)}
+                                { Object.keys(this.props.currentUser).length > 0 &&
+                                  <div style={dropdownStyle} >
+                                  <DropDownMenu value={this.state.group} onChange={this.groupInput}>
+                                  <MenuItem value={0} primaryText="Select if you want to post it only to a Group" />
+                                    { this.props.currentUser.groups.map((group) => (
+                                       <MenuItem value={group.id} primaryText={group.groupName} />
+                                    ))}
+                                  </DropDownMenu>
+                                  </div> 
+                                }  
+
+                               <FlatButton style={buttonStyle} backgroundColor='#67BCDB'
+                                           hoverColor="#ff4081" label="Post Item" 
                                            onClick={this.submitNewProductData}/>
 
-                                <FlatButton style={buttonStyle} backgroundColor="#A2AB58" 
-                                           hoverColor='#67BCDB' label="Post To Group" 
-                                           onClick={this.submitNewProductData}/>
+                                <FlatButton style={buttonStyle} backgroundColor='#67BCDB'
+                                           hoverColor="#ff4081" label="Post To Group" 
+                                           onClick={this.submitNewProductDataToGroup}/>
+                                <Interaction open = {this.state.open} message = "Item Posted..Thanks for sharing !"/>
                             </form>
                         </Paper>
+                        <br/><br/>
                 </div>
             </div>
         )
@@ -215,9 +266,9 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(AddProduct);
 
-                    // {/*Location*/}
-                                  // <TextField  style={style} 
-                                  //   hintText="choose location on map"
-                                  //   floatingLabelText="Location on Map"
-                                  //   onChange={this.locationInput}
-                                  // /><br /> 
+// {/*Location*/}
+// <TextField  style={style} 
+//   hintText="choose location on map"
+//   floatingLabelText="Location on Map"
+//   onChange={this.locationInput}
+// /><br />

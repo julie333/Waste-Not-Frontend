@@ -4,8 +4,10 @@ export const DISPLAY_USERS = 'fetchAllUsersData';
 export const DISPLAY_USER_DATA = 'fetchDataByUser';
 export const DISPLAY_ALL_PRODUCTS = 'fetchAllProductsData';
 export const DISPLAY_PRODUCT = 'fetchDataByProduct';
+export const DISPLAY_GROUP = 'fetchDataByGroup';
 export const ADD_GROUP = 'addGroup';
 export const ADD_PRODUCT = 'addProduct';
+export const ADD_PRODUCT_GROUP = 'addProductToGroup';
 export const REGISTER = 'register';
 export const SEARCH = 'search';
 export const SEARCH_USERS = 'searchUsers';
@@ -14,6 +16,8 @@ export const GROUP_REQUESTS = 'addGroupRequests';
 export const REMOVE_GROUP_REQUESTS = 'removeGroupRequests';
 export const FRIEND_REQUESTS = 'fetchFriendRequests';
 export const TOGGLE_GROUP = 'toggleGroup';
+export const DELETE_GROUP = 'deleteGroup';
+export const ADD_TO_WISHLIST = 'addToWishlist';
 
 export const fetchAllUsersData = () => {
     return (dispatch) => {
@@ -71,6 +75,21 @@ export const fetchDataByProduct = (id) => {
     }
 }
 
+export const fetchDataByGroup = (id) => {
+    return (dispatch) => {
+
+        return fetch('http://localhost:8080/groups/' + id + '/')
+            .then(data => data.json())
+            .then(groupDetails => {
+                dispatch({
+                    type: DISPLAY_GROUP,
+                    data: groupDetails,
+                    groupId: id,
+                })
+            });
+    }
+}
+
 
 export const fetchProductsRequestedByOthers = (productId, userId) => {
 
@@ -96,6 +115,12 @@ export const toggleGroup = (userId, groupId) => {
         fetch('http://localhost:8080/users/' + userId + '/groups/' + groupId + '/toggle');
 };
 
+export const deleteGroup = (userId, groupDeleteId) => {
+    console.log("In actions",groupDeleteId)
+    return (dispatch) =>
+        fetch('http://localhost:8080/groups/deletegroup/'+ groupDeleteId + '/');       
+};
+
 export const fetchFriendRequests = (userId, friendId) => {
     return (dispatch) =>
         fetch('http://localhost:8080/users/friendrequest/' + userId + '/' + friendId);
@@ -116,6 +141,28 @@ export const addProduct = (addProductsFormState, userId) => {
 
     //post request to add new Product to DB
     return fetch('http://localhost:8080/users/' + userId + '/createNewProduct', config)
+        .then(results => results.json())
+        .then(productData => {
+            console.log('config ', config);
+            console.log('fetched products', productData);
+        })
+}
+
+export const addProductToGroup = (addProductsFormState, userId, groupId) => {
+    console.log('submitted form data: ', addProductsFormState);
+
+    const myHeaders = new Headers({
+        'Content-Type': 'application/json',
+    });
+
+    const config = {
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify(addProductsFormState),
+    }
+
+    //post request to add new Product to DB
+    return fetch('http://localhost:8080/users/' + userId + '/createNewProduct/' + groupId+ '/', config)
         .then(results => results.json())
         .then(productData => {
             console.log('config ', config);
@@ -146,6 +193,21 @@ export const addGroup = (addGroupFormState, adminId) => {
         })
 }
 
+export const addToWishlist = (userId, wish) => {
+
+    const myHeaders = new Headers({
+        'Content-Type': 'application/json',
+    });
+
+    const config = {
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify(wish),
+    }
+
+    return (dispatch) =>
+        fetch('http://localhost:8080/users/' + userId + '/wishlist', config);
+}
 
 export const search = (searchedItem) => {
 
@@ -219,15 +281,7 @@ export const register = (addRegisterFormState) => {
         headers: myHeaders,
         body: JSON.stringify(addRegisterFormState),
     }
-
-    //post request to add new User to DB
-
     return fetch('http://localhost:8080/register', config)
-        // .then(results => results.json())
-        // .then(userData => {
-        //     console.log('config ', config);
-        //     console.log('fetched user', userData);
-        // })
 }
 
 
@@ -247,11 +301,11 @@ export const login = (loginUser) => {
             .then(data => data.json())
             .then(userObj => {
                 if (userObj.id === null) {
-                    // console.log('the email and password combination was wrong');
+                   console.log('the email and password combination was wrong');
                 } else {
                     console.log('successful LOGIN');
                 }
-                // console.log(userObj);
+                
                 dispatch({
                     type: LOGIN,
                     data: userObj
@@ -259,3 +313,28 @@ export const login = (loginUser) => {
             });
     }
 }
+
+
+
+// export const deleteGroup = (userId, groupDeleteId) => {
+// console.log("In actions",groupDeleteId)
+
+
+//         const myHeaders = new Headers({
+//             'Content-Type': 'application/json',
+//              'Access-Control-Allow-Origin': "http://localhost:3000" 
+//         });
+
+//         const config = {
+//             method: 'DELETE',
+//             headers: myHeaders,
+//         }
+
+//  return fetch('http://localhost:8080/groups/deletegroup/'+ groupDeleteId,config )
+//         .then(response => response.json())
+//         .then(()=>{
+//             console.log('config ', config);
+//             console.log('In here');
+//         });
+
+// };

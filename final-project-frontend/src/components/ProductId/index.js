@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Toggle from 'material-ui/Toggle';
 import { connect } from 'react-redux';
@@ -11,7 +11,9 @@ import ActionBookmarkBorder from 'material-ui/svg-icons/action/bookmark-border';
 import ActionDone from 'material-ui/svg-icons/action/done';
 import MapsPlace from 'material-ui/svg-icons/maps/place';
 import DeviceAccessTime from 'material-ui/svg-icons/device/access-time';
-import { style, buttonStyle, containerStyle, imgStyle} from './constants.js';
+import { style, buttonStyle, containerStyle, imgStyle } from './constants.js';
+import Interaction from '../Interaction';
+import HomeIcon from '../HomeIcon';
 
 class ProductId extends Component {
 
@@ -19,35 +21,44 @@ class ProductId extends Component {
         super(props);
         this.state = {
             expanded: false,
+            open: false,
         };
 
-     var productId = Object.keys(this.props.params.productId).length > 0 ? this.props.params.productId : [];
-     const fetchAction = fetchDataByProduct(productId);
-      
-     this.props.dispatch(fetchAction)
+        var productId = Object.keys(this.props.params.productId).length > 0 ? this.props.params.productId : [];
+        const fetchAction = fetchDataByProduct(productId);
+
+        this.props.dispatch(fetchAction)
             .then(() => {
-                console.log("After Fetch",this.props)
+                console.log("After Fetch", this.props)
             });
     }
-  
-    requestItem = (event) => {
 
-        const fetchAction = fetchProductsRequestedByOthers(event.currentTarget.id,this.props.currentUser.id);
-        this.props.dispatch(fetchAction); 
+    requestItem = (event) => {
+        event.preventDefault();
+
+        this.setState({
+            open: true,
+        })
+
+        delete this.state.open;
+
+        const fetchAction = fetchProductsRequestedByOthers(event.currentTarget.id, this.props.currentUser.id);
+        this.props.dispatch(fetchAction);
     }
 
     addToList = () => {
-      
+
 
     }
 
     render() {
         console.log("Before", this.props.products)
-          var productToRender = Object.keys(this.props.products).length > 0 ? this.props.products : {};
-       console.log("productToRenderlength",   productToRender.length)
+        var productToRender = Object.keys(this.props.products).length > 0 ? this.props.products : {};
         return (
+            <div style={{ backgroundColor:'#67BCDB', }}>
             <div className="ProductId" style={containerStyle}>
-            {   productToRender.length>0?false:true &&
+                <HomeIcon router={this.props.router}/>
+              { productToRender.length>0?false:true &&
                 Object.keys(productToRender).length > 0 &&
             
                 <Card style={style}>
@@ -71,21 +82,24 @@ class ProductId extends Component {
                         <CardActions>               
                             <FlatButton id = {productToRender.id}
                                         style={buttonStyle} 
-                                        backgroundColor="whitesmoke"
-                                        hoverColor="green" 
+                                        backgroundColor='whitesmoke'
+                                        hoverColor="#ff4081"
                                         label="Request Item" 
                                         onClick={this.requestItem.bind(this)}/>
 
                             <FlatButton id = {productToRender.id}
                                         style={buttonStyle} 
-                                        backgroundColor="whitesmoke" 
-                                        hoverColor="green" 
+                                        backgroundColor='whitesmoke'
+                                        hoverColor="#ff4081"
                                         label="Add to List" 
                                         onClick={this.addToList.bind(this)}/>
                         </CardActions>
                 </Card>
         }
-           </div>
+            <Interaction open= {this.state.open} message = "Item Request Sent !"/>
+            </div>
+            </div>
+            
         )
     }
 }
@@ -97,4 +111,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(ProductId);
-

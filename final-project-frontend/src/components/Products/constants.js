@@ -9,8 +9,8 @@ export const root = {
 };
 
 export const gridList = {
-    width: 600,
-    height: 550,
+    width: 700,
+    height: 600,
     overflowY: 'auto',
     fontFamily: 'Nunito',
     color: 'whitesmoke',

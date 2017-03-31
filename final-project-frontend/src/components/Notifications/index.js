@@ -10,28 +10,43 @@ import NavigationCheck from 'material-ui/svg-icons/navigation/check';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import Divider from 'material-ui/Divider';
 import { toggleGroup, addGroupRequests, removeGroupRequests } from '../../store/actions.js';
+import Interaction from '../Interaction';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
+import HomeIcon from '../HomeIcon';
 
 const style = {
     fontFamily: 'Nunito',
     fontWeight: 'bold',
     fontSize: 20,
     width: '80%',
-    color: 'whitesmoke',
-    backgroundColor: '#222',
+    color: '#222',
+    backgroundColor: 'whitesmoke',
     marginRight: 'auto',
     marginLeft: 'auto',
     textAlign: 'center',
 };
 
 
-class ProductsRequestedByOthers extends Component {
+class Notifications extends Component {
 
     constructor(props) {
         super(props);
 
+        this.state = {
+            openAdd: false,
+            openRemove: false,
+        };
+
     }
 
     handleAdd = (groupId) => {
+
+        this.setState({
+            openAdd: true,
+        })
+
+
+
         console.log("herer", this.props.currentUser);
         const fetchAction = toggleGroup(this.props.currentUser.id, groupId);
         this.props.dispatch(fetchAction);
@@ -39,6 +54,13 @@ class ProductsRequestedByOthers extends Component {
     }
 
     handleRemove = (groupId) => {
+
+        this.setState({
+            openRemove: true,
+        })
+
+        delete this.state.openRemove;
+
         console.log(this.props);
         const fetchAction = removeGroupRequests(this.props.currentUser.id, groupId);
         this.props.dispatch(fetchAction);
@@ -52,14 +74,23 @@ class ProductsRequestedByOthers extends Component {
         var self = this;
 
         return (
+            <div style={{ backgroundColor:'#67BCDB', }}>
             <div style={style}>
             <div className="ProductsRequestedByOthers">
-            <h2>Your Products have been requested !</h2>
-              <Products productsToRender={ products }
-              router={this.props.router}/> 
+            <HomeIcon router={this.props.router}/>
+
+            { products.length>0 &&
+            <div>
+                <h2>Your Products have been requested !</h2>
+                <Products productsToRender={ products }
+                  router={this.props.router}/> 
             </div>
+            }
+            </div>
+          
+            { groups.length>0 &&
             <div className="GroupRequests">
-            <h2>Group Requests</h2>
+            <h2>GROUP REQUESTS</h2>
             <div>
                <List>
                         {groups.map(function(group, index)  {
@@ -92,9 +123,23 @@ class ProductsRequestedByOthers extends Component {
                         })}          
                 </List>
                 </div>
+                <Interaction open = {this.state.openAdd} message = "You have Joined the Group"/>
+                <Interaction open = {this.state.openRemove} message = "Group Request Deleted"/>
             </div>
+        }
+          { friends.length>0 &&
             <div className="FriendRequests">
-            <h2>Friend Requests</h2>
+            <h2>FRIEND REQUESTS</h2>
+            </div>
+          }
+
+{
+
+friends.length===0 && groups.length===0 && products.length===0 &&
+<h2>You have no new notifications</h2>
+
+}
+
             </div>
             </div>
         )
@@ -105,9 +150,4 @@ const mapStateToProps = (state) => {
     return state;
 }
 
-export default connect(mapStateToProps)(ProductsRequestedByOthers);
-
-//           rightIcon={
-// <IconButton>
-//   <ContentAddCircleOutline onTouchTap={() => self.handleClick(group.id)}/>
-// </IconButton>}
+export default connect(mapStateToProps)(Notifications);

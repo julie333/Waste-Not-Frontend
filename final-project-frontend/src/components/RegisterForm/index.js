@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
-import { formBox, usersFormStyle, usersFormTitle,buttonStyle,imageStyle } from './constants.js';
+import { formBox, usersFormStyle, usersFormTitle, buttonStyle, imageStyle } from './constants.js';
 import TextField from 'material-ui/TextField';
 import { blue500 } from 'material-ui/styles/colors';
 import { RaisedButton } from 'material-ui';
@@ -14,17 +14,28 @@ import { register } from '../../store/actions.js'
 import DatePicker from 'material-ui/DatePicker';
 import Divider from 'material-ui/Divider';
 import ImageUpload from '../ImageUpload';
+import Interaction from '../Interaction';
 
 
 class RegisterForm extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            open: false,
+        };
+
     }
 
 
     submitNewUserData = (user) => {
         event.preventDefault();
+
+        this.setState({
+            open: true,
+        })
+
+        delete this.state.open;
         const addUserAction = register(this.state);
         console.log('this.state inside the form ', this.state);
         console.log('this.props ', this.props);
@@ -85,7 +96,7 @@ class RegisterForm extends Component {
         this.setState({
             avatar: avatar,
         })
-        console.log("Success",avatar)
+        console.log("Success", avatar)
     };
 
 
@@ -161,6 +172,7 @@ class RegisterForm extends Component {
                                <FlatButton style={buttonStyle} backgroundColor="#A2AB58" 
                                            hoverColor='#67BCDB' label="Sign Up" 
                                            onClick={this.submitNewUserData}/>
+                               <Interaction open = {this.state.open} message = "You have signed up!"/>
                             </form>
                         </Paper>
                 </div>
@@ -175,20 +187,20 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(RegisterForm);
 
-                                // {/*city*/}
-                                //   <TextField  style={style} 
-                                //     hintText="City"
-                                //     floatingLabelText="City"
-                                //     onChange={this.countryInput}
-                                //     underlineShow={false}
-                                //   />
-                                //   <Divider />
+// {/*city*/}
+//   <TextField  style={style} 
+//     hintText="City"
+//     floatingLabelText="City"
+//     onChange={this.countryInput}
+//     underlineShow={false}
+//   />
+//   <Divider />
 
-                                //  {/*country*/}
-                                //   <TextField  style={style} 
-                                //     hintText="Country"
-                                //     floatingLabelText="Country"
-                                //     onChange={this.cityInput}
-                                //     underlineShow={false}
-                                //   />
-                                //   <Divider />
+//  {/*country*/}
+//   <TextField  style={style} 
+//     hintText="Country"
+//     floatingLabelText="Country"
+//     onChange={this.cityInput}
+//     underlineShow={false}
+//   />
+//   <Divider />

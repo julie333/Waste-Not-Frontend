@@ -2,11 +2,11 @@ export const groupsFormTitle = {
     width: '100%',
     height: '70%',
     textAlign: 'center',
-    backgroundColor: '#A2AB58',
+    backgroundColor: '#67BCDB',
     display: 'inline-block',
     fontFamily: 'Nunito',
     fontSize: 25,
-    color: 'white',
+    color: 'whitesmoke',
     fontWeight: 'bold',
 }
 
@@ -19,8 +19,9 @@ export const groupsFormStyle = {
 }
 
 export const formBox = {
-    backgroundColor: '#67BCDB',
-      backgroundColor: '#67BCDB',
+    display: 'flex',
+    justifyContent: 'space-around',
+    backgroundColor: 'whitesmoke',
 }
 
 export const style = {

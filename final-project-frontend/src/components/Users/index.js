@@ -7,14 +7,26 @@ import ListItem from 'material-ui/List/ListItem';
 import { usersListContainer, usersList } from './constants.js';
 import ContentAddCircleOutline from 'material-ui/svg-icons/content/add-circle-outline';
 import IconButton from 'material-ui/IconButton';
+import Interaction from '../Interaction';
 
 class Users extends Component {
 
     constructor(props) {
         super(props);
+
+
+        this.state = {
+            open: false,
+        };
     }
 
     handleClick = (userId) => {
+
+        this.setState({
+            open: true,
+        })
+
+
         console.log(this.props);
         const fetchAction = addGroupRequests(userId,this.props.currentGroup);
         this.props.dispatch(fetchAction);
@@ -50,6 +62,7 @@ class Users extends Component {
                             )
                             })}          
                     </List>
+                    <Interaction open = {this.state.open} message = "Group Request sent"/>
             </div>
         )
 
@@ -62,17 +75,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Users);
-
-// const displayAllUsersAction = fetchAllUsersData(this.state);
-//  this.props.dispatch(displayAllUsersAction)
-//      .then(() => {
-//         console.log(this.props.users)       
-//      });
-
-     // var productId = Object.keys(this.props.params.productId).length > 0 ? this.props.params.productId : [];
-     // const fetchAction = fetchDataByProduct(productId);
-      
-     // this.props.dispatch(fetchAction)
-     //        .then(() => {
-     //            console.log("After Fetch",this.props)
-     //        });

@@ -15,7 +15,9 @@ import {
     GROUP_REQUESTS,
     REMOVE_GROUP_REQUESTS,
     FRIEND_REQUESTS,
-    TOGGLE_GROUP
+    TOGGLE_GROUP,
+    DISPLAY_GROUP,
+    ADD_PRODUCT_GROUP,
 } from './actions.js';
 
 function usersReducer(state = {}, action) {
@@ -46,6 +48,8 @@ function currentUserReducer(state = {}, action) {
         case DISPLAY_USER_DATA:
             return action.data;
         case ADD_PRODUCT:
+            return action.data;
+        case ADD_PRODUCT_GROUP:
             return action.data;
         case ADD_GROUP:
             return action.data;
@@ -79,11 +83,23 @@ function productsReducer(state = {}, action) {
     }
 }
 
+function groupsReducer(state = {}, action) {
+    switch (action.type) {
+
+        case DISPLAY_GROUP:
+            return action.data;
+        default:
+            return state;
+    }
+}
+
+
 
 const reducer = combineReducers({
     currentUser: currentUserReducer,
     users: usersReducer,
     products: productsReducer,
+    groups: groupsReducer,
 
 });
 
