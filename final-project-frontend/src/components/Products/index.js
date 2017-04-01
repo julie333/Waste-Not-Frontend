@@ -1,20 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { GridList, GridTile } from 'material-ui/GridList';
-import IconButton from 'material-ui/IconButton';
-import Subheader from 'material-ui/Subheader';
-import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
-import ActionZoomIn from 'material-ui/svg-icons/action/zoom-in';
-import NavigationFullscreen from 'material-ui/svg-icons/navigation/fullscreen';
-import NavigationFullscreenExit from 'material-ui/svg-icons/navigation/fullscreen-exit';
 import MapsZoomOutMap from 'material-ui/svg-icons/maps/zoom-out-map';
 import { root, gridList } from './constants.js';
+import IconButton from 'material-ui/IconButton';
 
 class Products extends Component {
-
-    constructor(props) {
-        super(props);
-    }
 
     handleZoom = (key) => {
 
@@ -35,14 +26,14 @@ class Products extends Component {
       cellHeight={200}
       style={gridList}
     >
-      {products.map((tile) => (
+      {products.map((tile,index) => (
         <GridTile  onTouchTap={this.handleZoom.bind(this, tile.id)}
-          key={tile.id}
+          key={index}
           title={tile.productName}
           subtitle={<span>- <b>{tile.productOwner.username}</b></span>}
           actionIcon={<IconButton><MapsZoomOutMap color="white" /></IconButton>}
         >
-          <img src={tile.productImageUrl} />
+          <img src={tile.productImageUrl} alt="product" />
         </GridTile>
       ))}
     </GridList>

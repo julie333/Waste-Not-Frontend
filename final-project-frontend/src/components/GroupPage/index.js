@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { container, header, avatar, members, productsPostedToGroup, bottomNavigation } from './constants.js';
+import { container, header, avatar, members, productsPostedToGroup} from './constants.js';
 import Avatar from 'material-ui/Avatar';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ActionSearch from 'material-ui/svg-icons/action/search';
 import Products from '../Products';
-import Logout from '../Logout';
 import BottomNavigationUser from '../BottomNavigationUser';
-import TextField from 'material-ui/TextField';
-import MapsDirections from 'material-ui/svg-icons/maps/directions';
 import { fetchDataByGroup } from '../../store/actions.js';
 import {GridList, GridTile} from 'material-ui/GridList';
-import IconButton from 'material-ui/IconButton';
 import HomeIcon from '../HomeIcon';
 
 const styles = {
@@ -69,7 +63,7 @@ class GroupPage extends Component {
                               titleStyle={styles.titleStyle}
                               titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
                             >
-                              <img src={tile.avatar} />
+                              <img src={tile.avatar} alt="user"/>
                             </GridTile>
                           ))}
                         </GridList>

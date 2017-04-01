@@ -27,7 +27,7 @@ export const style = {
     marginBottom: '3%',
     marginRight: 'auto',
     marginLeft: '10%',
-    color:'gray'
+    color: 'gray'
 };
 
 export const buttonStyle = {
@@ -36,7 +36,7 @@ export const buttonStyle = {
     marginBottom: '3%',
     marginRight: 'auto',
     marginLeft: '10%',
-    color:'white'
+    color: 'white'
 };
 
 
@@ -46,8 +46,8 @@ export const imageStyle = {
     marginBottom: '3%',
     marginRight: 'auto',
     marginLeft: '10%',
-    color:'#67BCDB',
-    textAlign:'center',
+    color: '#67BCDB',
+    textAlign: 'center',
 };
 
 export const dropdownStyle = {

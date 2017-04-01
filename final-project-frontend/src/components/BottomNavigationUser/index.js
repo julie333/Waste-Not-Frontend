@@ -5,12 +5,9 @@ import IconLocationOn from 'material-ui/svg-icons/communication/location-on';
 import ContentAddCircle from 'material-ui/svg-icons/content/add-circle';
 import SocialGroupAdd from 'material-ui/svg-icons/social/group-add';
 import SocialNotifications from 'material-ui/svg-icons/social/notifications';
-import SocialShare from 'material-ui/svg-icons/social/share';
 import ActionShoppingCart from 'material-ui/svg-icons/action/shopping-cart';
-import Products from '../Products';
- 
 import NotificationBadge from 'react-notification-badge';
-import {Effect} from 'react-notification-badge';
+import { Effect } from 'react-notification-badge';
 
 const itemAdd = <ContentAddCircle/>;
 const groupAdd = <SocialGroupAdd/>;
@@ -61,11 +58,11 @@ class BottomNavigationUser extends Component {
 
     fetchNotifications = (index) => {
 
-      this.setState({
+        this.setState({
             selectedIndex: index,
         })
 
-      this.props.router.push('/notifications');
+        this.props.router.push('/notifications');
     }
 
     viewCart = (index) => {
@@ -73,33 +70,34 @@ class BottomNavigationUser extends Component {
         this.setState({
             selectedIndex: index,
         })
-      this.props.router.push('/users/productsRequested/currentUser');
+        this.props.router.push('/users/productsRequested/currentUser');
     };
 
 
     render() {
 
-        const notificationsCount = Object.keys(this.props.currentUser).length > 0 ? 
-           this.props.currentUser.productsRequestedByOthers.length + 
-           this.props.currentUser.groupRequests.length +
-           this.props.currentUser.friendsRequests.length : 0;
+        const notificationsCount = Object.keys(this.props.currentUser).length > 0 ?
+            this.props.currentUser.productsRequestedByOthers.length +
+            this.props.currentUser.groupRequests.length +
+            this.props.currentUser.friendsRequests.length : 0;
 
-           console.log('this.props',this.props)
-           console.log('notificationsCount',notificationsCount)
+        console.log('this.props', this.props)
+        console.log('notificationsCount', notificationsCount)
 
-        const cartCount = Object.keys(this.props.currentUser).length > 0 ? 
-           this.props.currentUser.productsRequestedByUser.length: 0;
+        const cartCount = Object.keys(this.props.currentUser).length > 0 ?
+                                      this.props.currentUser.productsRequestedByUser.length +
+                                      this.props.currentUser.productsRecieved.length : 0;
 
         const notifications = <div>
-                                  <NotificationBadge count= {notificationsCount} effect={Effect.SCALE}/>
+                                  <NotificationBadge count={notificationsCount} effect={Effect.SCALE}/>
                                   <SocialNotifications/>
                               </div>;
 
-        const cart =  <div>
-                          <NotificationBadge count= {cartCount} effect={Effect.SCALE}/>
+        const cart = <div>
+                          <NotificationBadge count={cartCount} effect={Effect.SCALE}/>
                           <ActionShoppingCart/>
                       </div>;
-        
+
         return (
 
             <Paper style={bottomNavigation} zDepth={4}>
@@ -131,8 +129,8 @@ class BottomNavigationUser extends Component {
                     />
                 </BottomNavigation>
             </Paper>
-          );
-       }
+        );
     }
+}
 
 export default BottomNavigationUser;

@@ -3,15 +3,9 @@ import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
 import { formBox, usersFormStyle, usersFormTitle, buttonStyle, imageStyle } from './constants.js';
 import TextField from 'material-ui/TextField';
-import { blue500 } from 'material-ui/styles/colors';
-import { RaisedButton } from 'material-ui';
 import FlatButton from 'material-ui/FlatButton';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
-import TimePicker from 'material-ui/TimePicker';
 import { style } from './constants.js';
 import { register } from '../../store/actions.js'
-import DatePicker from 'material-ui/DatePicker';
 import Divider from 'material-ui/Divider';
 import ImageUpload from '../ImageUpload';
 import Interaction from '../Interaction';
@@ -34,9 +28,9 @@ class RegisterForm extends Component {
         this.setState({
             open: true,
         })
-
         delete this.state.open;
         const addUserAction = register(this.state);
+        this.props.dispatch(addUserAction);
         console.log('this.state inside the form ', this.state);
         console.log('this.props ', this.props);
 
@@ -172,7 +166,7 @@ class RegisterForm extends Component {
                                <FlatButton style={buttonStyle} backgroundColor="#A2AB58" 
                                            hoverColor='#67BCDB' label="Sign Up" 
                                            onClick={this.submitNewUserData}/>
-                               <Interaction open = {this.state.open} message = "You have signed up!"/>
+                               <Interaction open={this.state.open} message="You have signed up!"/>
                             </form>
                         </Paper>
                 </div>

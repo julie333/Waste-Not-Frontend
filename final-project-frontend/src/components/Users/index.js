@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchAllUsersData,addGroupRequests,removeGroupRequests } from '../../store/actions.js';
+import { addGroupRequests } from '../../store/actions.js';
 import Avatar from 'material-ui/Avatar';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
@@ -62,7 +62,7 @@ class Users extends Component {
                             )
                             })}          
                     </List>
-                    <Interaction open = {this.state.open} message = "Group Request sent"/>
+                    <Interaction open={this.state.open} message="Group Request sent"/>
             </div>
         )
 

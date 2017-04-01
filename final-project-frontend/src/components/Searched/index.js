@@ -18,10 +18,6 @@ const style = {
 
 class Searched extends Component {
 
-    constructor(props) {
-        super(props);
-
-    }
     render() {
         var products = Object.keys(this.props.products).length > 0 ? this.props.products : [];
 

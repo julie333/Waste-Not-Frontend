@@ -1,19 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import './index.css';
+
+const style = {
+    width: '100%',
+    height: 1000,
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    backgroundColor: "#222",
+}
+
 
 class App extends Component {
 
-    constructor(props) {
-        super(props);
-
-    }
-
     render() {
-          console.log('this.props ',this.props)
         return (
-            <div className="App">
-                <h3>{ this.props.currentUser.username }</h3>
+            <div className="App" style={style}>	
+                <img src="./logo.png" alt="logo"/>
+                <img src="./logo.png" alt="logo"/>
+                <img src="./logo.png" alt="logo"/>
+                <img src="./logo.png" alt="logo"/>
+                <img src="./logo.png" alt="logo"/>
+                <img src="./logo.png" alt="logo"/>
+                <img src="./logo.png" alt="logo"/>
+                <img src="./logo.png" alt="logo"/>
+                <img src="./logo.png" alt="logo"/>
+                <img src="./logo.png" alt="logo"/>
             </div>
         )
     }
@@ -24,6 +35,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(App);
-
-
-

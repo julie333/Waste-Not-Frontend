@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Products from '../Products';
-import Groups from '../Groups';
+import ProductsRequests from '../ProductsRequests';
 import Avatar from 'material-ui/Avatar';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
@@ -9,9 +8,8 @@ import IconButton from 'material-ui/IconButton';
 import NavigationCheck from 'material-ui/svg-icons/navigation/check';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import Divider from 'material-ui/Divider';
-import { toggleGroup, addGroupRequests, removeGroupRequests } from '../../store/actions.js';
+import { toggleGroup, removeGroupRequests } from '../../store/actions.js';
 import Interaction from '../Interaction';
-import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import HomeIcon from '../HomeIcon';
 
 const style = {
@@ -25,7 +23,6 @@ const style = {
     marginLeft: 'auto',
     textAlign: 'center',
 };
-
 
 class Notifications extends Component {
 
@@ -82,7 +79,7 @@ class Notifications extends Component {
             { products.length>0 &&
             <div>
                 <h2>Your Products have been requested !</h2>
-                <Products productsToRender={ products }
+                <ProductsRequests productsToRender={ products }
                   router={this.props.router}/> 
             </div>
             }
@@ -123,8 +120,8 @@ class Notifications extends Component {
                         })}          
                 </List>
                 </div>
-                <Interaction open = {this.state.openAdd} message = "You have Joined the Group"/>
-                <Interaction open = {this.state.openRemove} message = "Group Request Deleted"/>
+                <Interaction open={this.state.openAdd} message="You have Joined the Group"/>
+                <Interaction open={this.state.openRemove} message="Group Request Deleted"/>
             </div>
         }
           { friends.length>0 &&

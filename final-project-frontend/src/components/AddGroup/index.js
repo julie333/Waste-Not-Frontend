@@ -22,17 +22,15 @@ class AddGroup extends Component {
     submitNewGroupData = (group) => {
         event.preventDefault();
 
-         this.setState({
+        this.setState({
             open: true,
         })
 
         delete this.state.open;
         var adminId = this.props.currentUser.id;
         const addGroupAction = addGroup(this.state, adminId);
+        this.props.dispatch(addGroupAction);
         console.log('this.state inside the form ', this.state);
-        console.log('this.props ', this.props);
-
-
     };
 
 
@@ -96,7 +94,7 @@ class AddGroup extends Component {
                                <FlatButton style={buttonStyle} backgroundColor="#67BCDB" 
                                            hoverColor="#ff4081" label="Start New Group"
                                            onClick={this.submitNewGroupData}/> 
-                               <Interaction open = {this.state.open} message = "New Group Created"/>
+                               <Interaction open={this.state.open} message="New Group Created"/>
                             </form>
                         </Paper>
                         <br/><br/>

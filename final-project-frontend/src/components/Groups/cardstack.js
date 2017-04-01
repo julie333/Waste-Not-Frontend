@@ -1,6 +1,13 @@
 import React from 'react';
 
 const equalsZero = (num) => num === 0;
+const styles = {
+	display: 'flex',
+	flexDirection: 'column',
+	position: 'relative',
+	overflow: 'hidden',
+	padding: 0,
+};
 // const errorMessage = 'CardStack component must have at least two child Card components. Please check the children of this CardStack instance.';
 
 class CardStack extends React.Component {
@@ -77,13 +84,6 @@ class CardStack extends React.Component {
 	}
 }
 
-const styles = {
-	display: 'flex',
-	flexDirection: 'column',
-	position: 'relative',
-	overflow: 'hidden',
-	padding: 0,
-};
 
 CardStack.propTypes = {
 	background: React.PropTypes.string,

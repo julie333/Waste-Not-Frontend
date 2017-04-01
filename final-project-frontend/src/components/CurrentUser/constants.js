@@ -1,16 +1,3 @@
-export const styleRaisedButton = { margin: 12 };
-
-export const stylePaper = {
-    height: 100,
-    width: 100,
-    margin: 20,
-    textAlign: 'center',
-};
-
-
-export const userName = { textAlign: 'center' };
-
-
 export const container = {
     display: 'flex',
     flexWrap: 'wrap',

@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 import {
     LOGIN,
-    DISPLAY_FEED,
     DISPLAY_USERS,
     DISPLAY_USER_DATA,
     DISPLAY_ALL_PRODUCTS,
@@ -18,6 +17,7 @@ import {
     TOGGLE_GROUP,
     DISPLAY_GROUP,
     ADD_PRODUCT_GROUP,
+    PRODUCT_REQUEST_HANDLER
 } from './actions.js';
 
 function usersReducer(state = {}, action) {
@@ -70,6 +70,9 @@ function productsReducer(state = {}, action) {
             return newState;
 
         case DISPLAY_PRODUCT:
+            return action.data;
+
+        case PRODUCT_REQUEST_HANDLER:
             return action.data;
 
         case SEARCH:

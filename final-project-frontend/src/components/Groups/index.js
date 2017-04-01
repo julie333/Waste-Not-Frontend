@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Card } from 'react-cardstack';
 import CardStack from './cardstack.js';
 import Avatar from 'material-ui/Avatar';
-import { box, buttonStyle, cardbox, imgStyle, headerStyle, toggleStyle } from './constants.js';
+import { box, cardbox, imgStyle, headerStyle, toggleStyle } from './constants.js';
 import Toggle from 'material-ui/Toggle';
 import SocialPersonAdd from 'material-ui/svg-icons/social/person-add';
 import Dialog from 'material-ui/Dialog';
@@ -110,7 +110,7 @@ class Groups extends Component {
     };
 
     handleGoToGroup = () => {
-      this.props.router.push('currentUser/groups/'+this.state.groupId)
+        this.props.router.push('currentUser/groups/' + this.state.groupId)
     };
 
 
@@ -149,8 +149,8 @@ class Groups extends Component {
         var groups = Object.keys(this.props.currentUser).length > 0 ? this.props.currentUser.groups : [1, 2, 3];
 
         return (
-          <div>
-          <div style = {headerStyle}>
+            <div>
+          <div style={headerStyle}>
             <HomeIcon router={this.props.router}/>
             <div className="Groups" >
             <h2 style={{fontSize: 40}}> YOUR GROUPS </h2>
@@ -159,28 +159,18 @@ class Groups extends Component {
           <div style={cardbox}>
           <CardStack
               width={600}
-              height= {this.props.currentUser.groups.length<=2?450: this.props.currentUser.groups.length*125}
+              height={this.props.currentUser.groups.length<=2?400: this.props.currentUser.groups.length*125}
               background="whitesmoke"
               hoverOffset={25}>
 
                {groups.map((group, index) => ( 
 
-               <Card background= { ['#8dd3c7',  '#bebada',  '#80b1d3',  '#b3de69',
+               <Card background={ ['#8dd3c7',  '#bebada',  '#80b1d3',  '#b3de69',
                                    '#fccde5', '#bc80bd', '#ccebc5'][Math.random()*6|0] } 
                     key={index}
                     cardClicked={this.handleCardClick.bind(this,group.id)}>
                      <div className="header">
-                     <Avatar src = {group.groupImage} size={70} style={imgStyle}/>  
-                       { group.admin.username!==this.props.currentUser.username && 
-                        <div style={toggleStyle} >                      
-                            <Toggle
-                                toggled={this.state.expanded}
-                                onToggle={this.handleToggle}
-                                labelPosition="right"
-                                label="Leave Group"
-                            />
-                        </div> 
-                        }
+                     <Avatar src={group.groupImage} size={70} style={imgStyle}/>  
                       <h2> {group.groupName} </h2>                         
                       </div>
                       <br/>                         
@@ -195,6 +185,20 @@ class Groups extends Component {
                                   <MapsDirections color="black" onTouchTap={this.handleGoToGroup}/>
                             </IconButton>Visit Group
                           </div>
+
+                          { group.admin.username!==this.props.currentUser.username && 
+                          <div style={toggleStyle} >                      
+                            <Toggle
+                                toggled={this.state.expanded}
+                                onToggle={this.handleToggle}
+                                label="Leave Group"
+                                labelPosition="right"
+                                labelStyle={toggleStyle.labelStyle}
+                                style={toggleStyle.toggle}
+                            />
+                          </div> 
+                          }
+
                           { group.admin.username===this.props.currentUser.username && 
                           <div>
                           <div>
@@ -242,8 +246,8 @@ class Groups extends Component {
           </div>
          }
          <br/><br/>
-         <Interaction open = {this.state.openInteractionToggle} message = "You have left the Group"/>
-         <Interaction open = {this.state.openInteractionDelete} message = "Group Deleted"/>
+         <Interaction open={this.state.openInteractionToggle} message="You have left the Group"/>
+         <Interaction open={this.state.openInteractionDelete} message="Group Deleted"/>
     </div>
   
     </div>

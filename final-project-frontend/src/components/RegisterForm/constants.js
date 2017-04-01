@@ -26,7 +26,7 @@ export const style = {
     fontSize: 15,
     marginRight: 'auto',
     marginLeft: '5%',
-    color:'gray'
+    color: 'gray'
 };
 
 export const dropdownStyle = {
@@ -39,11 +39,11 @@ export const dropdownStyle = {
 export const buttonStyle = {
     fontFamily: 'Nunito',
     fontSize: 15,
-    marginTop : '10%',
-    marginBottom : '10%',
+    marginTop: '10%',
+    marginBottom: '10%',
     marginRight: 'auto',
     marginLeft: '10%',
-    color:'white'
+    color: 'white'
 };
 
 export const imageStyle = {
@@ -52,6 +52,6 @@ export const imageStyle = {
     marginBottom: '3%',
     marginRight: 'auto',
     marginLeft: '10%',
-    color:'#67BCDB',
-    textAlign:'center',
+    color: '#67BCDB',
+    textAlign: 'center',
 };

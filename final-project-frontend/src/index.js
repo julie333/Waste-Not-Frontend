@@ -18,11 +18,9 @@ import ProductId from './components/ProductId';
 import Searched from './components/Searched';
 import Notifications from './components/Notifications';
 import ProductsRequestedByUser from './components/ProductsRequestedByUser';
-import ImageUpload from './components/ImageUpload';
 import Groups from './components/Groups';
-import GoogleMaps from './components/GoogleMaps';
+// import GoogleMaps from './components/GoogleMaps';
 import GroupPage from './components/GroupPage';
-import Logo from './components/Logo';
 
 import './index.css';
 
@@ -41,18 +39,16 @@ ReactDOM.render(
                  <Route path="/users/createNewGroup" component={ AddGroup } />
                  <Route path="/users/currentUser/groups" component={ UserGroups } /> 
                  <Route path="/notifications" component={ Notifications }/> 
-                 <Route path="/maps" component={ GoogleMaps }/> 
                  <Route path="/users/productsRequested/currentUser" component={ ProductsRequestedByUser } /> 
                  <Route path="/products" component={ Products } />
                  <Route path="/groups" component={ Groups } />
                  <Route path="/currentUser/groups/:groupId" component={ GroupPage } />
                  <Route path="/searchedproducts" component={ Searched } />
                  <Route path="/products/:productId" component={ ProductId } />   
-                 <Route path="/trial" component={ Logo } />   
             </Router>
         </MuiThemeProvider>
     </Provider>,
     document.getElementById('root')
 );
 
-
+// <Route path="/maps" component={ GoogleMaps }/> 

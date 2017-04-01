@@ -34,9 +34,7 @@ class Login extends Component {
             })
             .then(() => {
 
-                if (this.props.currentUser.email === null) {
-                } 
-                else {
+                if (this.props.currentUser.email === null) {} else {
                     this.props.router.push('/users/currentUser');
                 }
             })

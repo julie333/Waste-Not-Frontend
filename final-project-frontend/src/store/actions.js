@@ -18,6 +18,8 @@ export const FRIEND_REQUESTS = 'fetchFriendRequests';
 export const TOGGLE_GROUP = 'toggleGroup';
 export const DELETE_GROUP = 'deleteGroup';
 export const ADD_TO_WISHLIST = 'addToWishlist';
+export const PRODUCT_REQUEST_HANDLER = 'productRequestHandler';
+
 
 export const fetchAllUsersData = () => {
     return (dispatch) => {
@@ -99,6 +101,26 @@ export const fetchProductsRequestedByOthers = (productId, userId) => {
 
 };
 
+
+export const productRequestHandler = (userId, productId, selected) => {
+
+    const myHeaders = new Headers({
+        'Content-Type': 'application/json',
+    });
+
+    const config = {
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify(selected),
+    }
+
+    return (dispatch) => {
+        return fetch('http://localhost:8080/products/' + userId + '/requestAction/' + productId, config);
+    }
+
+};
+
+
 export const addGroupRequests = (userId, groupId) => {
     return (dispatch) =>
         fetch('http://localhost:8080/users/grouprequest/add/' + userId + '/' + groupId);
@@ -116,9 +138,9 @@ export const toggleGroup = (userId, groupId) => {
 };
 
 export const deleteGroup = (userId, groupDeleteId) => {
-    console.log("In actions",groupDeleteId)
+    console.log("In actions", groupDeleteId)
     return (dispatch) =>
-        fetch('http://localhost:8080/groups/deletegroup/'+ groupDeleteId + '/');       
+        fetch('http://localhost:8080/groups/deletegroup/' + groupDeleteId + '/');
 };
 
 export const fetchFriendRequests = (userId, friendId) => {
@@ -162,7 +184,7 @@ export const addProductToGroup = (addProductsFormState, userId, groupId) => {
     }
 
     //post request to add new Product to DB
-    return fetch('http://localhost:8080/users/' + userId + '/createNewProduct/' + groupId+ '/', config)
+    return fetch('http://localhost:8080/users/' + userId + '/createNewProduct/' + groupId + '/', config)
         .then(results => results.json())
         .then(productData => {
             console.log('config ', config);
@@ -226,7 +248,7 @@ export const search = (searchedItem) => {
             .then(data => data.json())
             .then(productObj => {
                 var products = Object.keys(productObj).length > 0 ? productObj : [];
-                if (products.length == 0) {
+                if (products.length===0) {
                     console.log('no products were found');
                 } else {
                     console.log('products were found');
@@ -256,7 +278,7 @@ export const searchUsers = (searchedUser) => {
             .then(data => data.json())
             .then(userObj => {
                 var users = Object.keys(userObj).length > 0 ? userObj : [];
-                if (users.length == 0) {
+                if (users.length===0) {
                     console.log('no users were found', users);
                 } else {
                     console.log('users were found');
@@ -301,11 +323,11 @@ export const login = (loginUser) => {
             .then(data => data.json())
             .then(userObj => {
                 if (userObj.id === null) {
-                   console.log('the email and password combination was wrong');
+                    console.log('the email and password combination was wrong');
                 } else {
                     console.log('successful LOGIN');
                 }
-                
+
                 dispatch({
                     type: LOGIN,
                     data: userObj

@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AutoRotatingCarousel, Slide } from 'material-auto-rotating-carousel'
-import { red600 } from 'material-ui/styles/colors'
-
 
 class UserGroups extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
 
     displayGroups = () => {
         event.preventDefault();
@@ -17,7 +10,7 @@ class UserGroups extends Component {
             groupsToRender: this.props.groupsToRender
         })
 
-        console.log( this.props.groupsToRender)
+        console.log(this.props.groupsToRender)
         this.props.router.push('/groups');
     };
 
@@ -36,12 +29,12 @@ class UserGroups extends Component {
           open
           mobile={true}
           style={{ position: 'inherit', width: '100%',  fontFamily: 'Nunito'}}
-          onStart = {this.displayGroups}
+          onStart={this.displayGroups}
           >
             { groups.map((slide,index) => (      
                 <Slide
                 key={slide.id}
-                media={<img src= {slide.groupImage}/>}
+                media={<img src={slide.groupImage} alt="group"/>}
                 mediaBackgroundStyle={{ backgroundColor: 'whitesmoke' }}
                 contentStyle={{ backgroundColor: '#67BCDB',  fontFamily: 'Nunito', }}
                 title={slide.groupName}

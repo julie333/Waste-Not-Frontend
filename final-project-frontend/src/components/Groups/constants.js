@@ -6,7 +6,6 @@ export const imgStyle = {
 
 export const headerStyle = {
     width: '100%',
-    textAlign: 'center',
     backgroundColor: '#67BCDB',
     display: 'inline-block',
     fontFamily: 'Nunito',
@@ -19,11 +18,19 @@ export const headerStyle = {
 };
 
 export const toggleStyle = {
-    marginTop: '2%',
-    marginBottom: '2%',
-    marginRight: '3%',
-    cssFloat: 'right',
+    maxWidth: 170,
+    marginRight: 'auto',
+    marginLeft: 'auto',
+    labelStyle: {
+        color: 'white',
+        fontFamily: 'Nunito',
+        fontSize: 20,
+    },
+    toggle: {
+        marginRight: 5,
+    },
 };
+
 
 export const box = {
     display: 'inline-block',

@@ -16,10 +16,10 @@ class Interaction extends Component {
         var open = this.props.open;
 
         return (
-            <div style = {{ marginTop : '15%'}}>
+            <div style={{ marginTop : '15%'}}>
                 <Snackbar bodyStyle={style}
                   open={open}
-                  message= {message}
+                  message={message}
                   autoHideDuration={4000}
                 />
             </div>

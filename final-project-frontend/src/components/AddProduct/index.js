@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
 import { formBox, productsFormStyle, productsFormTitle, style, dropdownStyle, imageStyle, buttonStyle } from './constants.js';
 import TextField from 'material-ui/TextField';
-import { blue500 } from 'material-ui/styles/colors';
-import { RaisedButton } from 'material-ui';
 import FlatButton from 'material-ui/FlatButton';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -44,6 +42,7 @@ class AddProduct extends Component {
         delete this.state.group;
         var userId = this.props.currentUser.id;
         const addProductAction = addProduct(this.state, userId);
+        this.props.dispatch(addProductAction);
         console.log('this.state inside the form ', this.state);
         console.log('this.props ', this.props);
     };
@@ -62,7 +61,8 @@ class AddProduct extends Component {
         delete this.state.valueCategory;
         delete this.state.valueAvailability;
         delete this.state.group;
-        const addProductAction = addProductToGroup(this.state, userId, groupId);
+        const addProductGroupAction = addProductToGroup(this.state, userId, groupId);
+        this.props.dispatch(addProductGroupAction);
         console.log('this.state inside the form ', this.state);
         console.log('this.props ', this.props);
     };
@@ -134,10 +134,10 @@ class AddProduct extends Component {
 
         this.setState({ valueAvailability: value })
 
-        if (value == 1) {
+        if (value === 1) {
             this.setState({ available: true })
         }
-        if (value == 2) {
+        if (value === 2) {
             this.setState({ available: false })
         }
     };
@@ -250,7 +250,7 @@ class AddProduct extends Component {
                                 <FlatButton style={buttonStyle} backgroundColor='#67BCDB'
                                            hoverColor="#ff4081" label="Post To Group" 
                                            onClick={this.submitNewProductDataToGroup}/>
-                                <Interaction open = {this.state.open} message = "Item Posted..Thanks for sharing !"/>
+                                <Interaction open={this.state.open} message="Item Posted..Thanks for sharing !"/>
                             </form>
                         </Paper>
                         <br/><br/>

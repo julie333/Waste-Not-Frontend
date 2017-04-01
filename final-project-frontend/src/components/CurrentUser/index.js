@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './index.css';
 import { search, addToWishlist } from '../../store/actions.js'
-import { txtBoxStyle, container, header, avatar, searchBox, searchButton, productsPostedByUser, userGroups, bottomNavigation } from './constants.js';
+import { txtBoxStyle, container, header, avatar, searchBox, productsPostedByUser, userGroups} from './constants.js';
 import Avatar from 'material-ui/Avatar';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ActionSearch from 'material-ui/svg-icons/action/search';
@@ -11,14 +11,15 @@ import Logout from '../Logout';
 import Logo from '../Logo';
 import BottomNavigationUser from '../BottomNavigationUser';
 import UserGroups from '../UserGroups';
-import { red400 } from 'material-ui/styles/colors';
 import IconButton from 'material-ui/IconButton';
 import TextField from 'material-ui/TextField';
 import ActionCardGiftcard from 'material-ui/svg-icons/action/card-giftcard';
 import Dialog from 'material-ui/Dialog';
 import Interaction from '../Interaction';
-import FlatButton from 'material-ui/FlatButton';
 import ContentAddCircleOutline from 'material-ui/svg-icons/content/add-circle-outline';
+import List from 'material-ui/List/List';
+import ListItem from 'material-ui/List/ListItem';
+import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 
 class CurrentUser extends Component {
 
@@ -56,13 +57,13 @@ class CurrentUser extends Component {
 
     handleAdd = () => {
 
-      const addAction = addToWishlist(this.props.currentUser.id, this.state.wish);
+        const addAction = addToWishlist(this.props.currentUser.id, this.state.wish);
 
-      this.props.dispatch(addAction);
-     
-      this.setState({
-          openInteractionWishlist: true,
-      });
+        this.props.dispatch(addAction);
+
+        this.setState({
+            openInteractionWishlist: true,
+        });
 
     };
 
@@ -77,7 +78,7 @@ class CurrentUser extends Component {
     handleSearch = (event) => {
 
         event.preventDefault();
-        const searchAction = search(this.state);
+        const searchAction = search(this.state.searchedProduct);
 
         this.props.dispatch(searchAction)
             .then(() => {
@@ -112,6 +113,7 @@ class CurrentUser extends Component {
                             size={90}
                           />
                 </div>
+
                 <div className="searchBox" style={searchBox}>
                     <IconButton style={{cssFloat: 'right'}}>
                         <ActionCardGiftcard color="#ff4081" onTouchTap={this.handleOpen}/>
@@ -121,6 +123,8 @@ class CurrentUser extends Component {
                           modal={false}
                           open={this.state.open}
                           onRequestClose={this.handleClose}
+                          autoScrollBodyContent={true}
+                          contentStyle={{ width: '40%',}}
                       > 
                         <TextField 
                           hintText="Enter to add to WishList"
@@ -129,20 +133,34 @@ class CurrentUser extends Component {
                          <IconButton>
                             <ContentAddCircleOutline onTouchTap={() => this.handleAdd()}/>
                          </IconButton><br/>
-                        { this.props.currentUser.wishList.map(function(wish, index)  {
-                      
-                              <p>wish</p>
-                  
-                        })}   
+                          <List>
+                          {this.props.currentUser.wishList.map(function(wish, index)  {
+                            return(  
+                                <ListItem  
+                                   key={ index } 
+                                   primaryText={wish}
+                                   disabled={false}
 
-                     </Dialog>
-                     <blockquote>
-                     {this.getQuote}
-                     </blockquote>
-                        <TextField  style={txtBoxStyle} 
-                                      hintText="What would you like to save ?"
-                                      onChange={this.handleSearchBoxChange}
-                                    />
+                                   rightIcon={
+                                    <IconButton>
+                                      <ActionFavorite color="#ff4081"/>
+                                    </IconButton>
+                                  }
+                                >  
+                                </ListItem>  
+                               )
+                           })}          
+                         </List>
+                      </Dialog>
+
+                          <blockquote>
+                              {this.getQuote}
+                          </blockquote>
+
+                          <TextField  style={txtBoxStyle} 
+                                        hintText="What would you like to save ?"
+                                        onChange={this.handleSearchBoxChange}
+                                      />
                      <FloatingActionButton secondary={true} mini={true} onClick={this.handleSearch}>  
                             <ActionSearch />  
                      </FloatingActionButton>
@@ -153,12 +171,13 @@ class CurrentUser extends Component {
                       <Products productsToRender={this.props.currentUser.productsPosted} 
                       router={this.props.router}/>   
                 </div>
+
                 <div className="UserGroups" style={userGroups}>
                       <UserGroups groupsToRender={this.props.currentUser.groups}
                       router={this.props.router}/> 
                        </div>   
                 <BottomNavigationUser router={this.props.router} currentUser={this.props.currentUser}/> 
-                <Interaction open = {this.state.openInteractionWishlist} message = "Wish Added :)"/>       
+                <Interaction open={this.state.openInteractionWishlist} message="Wish Added :)"/>       
               
             </div>
         )
@@ -171,4 +190,4 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(CurrentUser);
 
- // <div> { this.props.currentUser.wishList[0].split(",").join(" - ")} </div>
+// <div> { this.props.currentUser.wishList[0].split(",").join(" - ")} </div>

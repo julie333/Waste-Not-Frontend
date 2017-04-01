@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import Toggle from 'material-ui/Toggle';
 import { connect } from 'react-redux';
-import ToggleButton from '../ToggleButton';
 import { fetchDataByProduct, fetchProductsRequestedByOthers } from '../../store/actions.js'
 import IconButton from 'material-ui/IconButton';
-import CommunicationChatBubbleOutline from 'material-ui/svg-icons/communication/chat-bubble-outline';
 import ActionBookmarkBorder from 'material-ui/svg-icons/action/bookmark-border';
 import ActionDone from 'material-ui/svg-icons/action/done';
 import MapsPlace from 'material-ui/svg-icons/maps/place';
@@ -77,17 +74,17 @@ class ProductId extends Component {
                             {<IconButton><ActionBookmarkBorder color="green" /></IconButton>}{productToRender.description} <br/>
                             {<IconButton><MapsPlace color="green" /></IconButton>}{productToRender.pickupLocation} <br/>
                             {<IconButton><DeviceAccessTime color="green" /></IconButton>} {productToRender.pickupTime} <br/>
-                            {<IconButton><ActionDone color="green" /></IconButton>}{productToRender.available?"Available":"Not Available"} <br/>   
+                            {<IconButton><ActionDone color="green" /></IconButton>}{productToRender.available?"Available":"Gone"} <br/>   
                         </CardText>                        
                         <CardActions>               
-                            <FlatButton id = {productToRender.id}
+                            <FlatButton id={productToRender.id}
                                         style={buttonStyle} 
                                         backgroundColor='whitesmoke'
                                         hoverColor="#ff4081"
                                         label="Request Item" 
                                         onClick={this.requestItem.bind(this)}/>
 
-                            <FlatButton id = {productToRender.id}
+                            <FlatButton id={productToRender.id}
                                         style={buttonStyle} 
                                         backgroundColor='whitesmoke'
                                         hoverColor="#ff4081"
@@ -96,10 +93,10 @@ class ProductId extends Component {
                         </CardActions>
                 </Card>
         }
-            <Interaction open= {this.state.open} message = "Item Request Sent !"/>
+            <Interaction open={this.state.open} message="Item Request Sent !"/>
             </div>
             </div>
-            
+
         )
     }
 }

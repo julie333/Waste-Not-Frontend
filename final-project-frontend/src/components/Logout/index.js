@@ -33,7 +33,7 @@ class Logout extends Component {
         return (
             <div className="Logout">
                 <RaisedButton label="Logout" secondary={true} 
-                    style = {style}
+                    style={style}
                     onClick={this.handleLogout}/>     
             </div>
         );
