@@ -20,10 +20,12 @@ export const DELETE_GROUP = 'deleteGroup';
 export const ADD_TO_WISHLIST = 'addToWishlist';
 export const PRODUCT_REQUEST_HANDLER = 'productRequestHandler';
 
+// const BASE_URL = 'http://localhost:8080/';
+const BASE_URL = 'https://vast-ravine-27244.herokuapp.com/';
 
 export const fetchAllUsersData = () => {
     return (dispatch) => {
-        return fetch('http://localhost:8080/users/')
+        return fetch(BASE_URL + 'users/')
             .then(data => data.json())
             .then(allUsersArray => {
                 dispatch({
@@ -37,7 +39,7 @@ export const fetchAllUsersData = () => {
 export const fetchDataByUser = (id) => {
     return (dispatch) => {
 
-        return fetch('http://localhost:8080/users/' + id + '/')
+        return fetch(BASE_URL + 'users/' + id + '/')
             .then(data => data.json())
             .then(userDetailsArray => {
                 dispatch({
@@ -51,7 +53,7 @@ export const fetchDataByUser = (id) => {
 
 export const fetchAllProductsData = () => {
     return (dispatch) => {
-        return fetch('http://localhost:8080/products/')
+        return fetch(BASE_URL + 'products/')
             .then(data => data.json())
             .then(allProductsArray => {
                 dispatch({
@@ -65,7 +67,7 @@ export const fetchAllProductsData = () => {
 export const fetchDataByProduct = (id) => {
     return (dispatch) => {
 
-        return fetch('http://localhost:8080/products/' + id + '/')
+        return fetch(BASE_URL + 'products/' + id + '/')
             .then(data => data.json())
             .then(productDetails => {
                 dispatch({
@@ -80,7 +82,7 @@ export const fetchDataByProduct = (id) => {
 export const fetchDataByGroup = (id) => {
     return (dispatch) => {
 
-        return fetch('http://localhost:8080/groups/' + id + '/')
+        return fetch(BASE_URL + 'groups/' + id + '/')
             .then(data => data.json())
             .then(groupDetails => {
                 dispatch({
@@ -96,7 +98,7 @@ export const fetchDataByGroup = (id) => {
 export const fetchProductsRequestedByOthers = (productId, userId) => {
 
     return (dispatch) => {
-        fetch('http://localhost:8080/users/' + userId + '/productsRequested/' + productId + '/toggle');
+        fetch(BASE_URL + 'users/' + userId + '/productsRequested/' + productId + '/toggle');
     }
 
 };
@@ -115,7 +117,7 @@ export const productRequestHandler = (userId, productId, selected) => {
     }
 
     return (dispatch) => {
-        return fetch('http://localhost:8080/products/' + userId + '/requestAction/' + productId, config);
+        return fetch(BASE_URL + 'products/' + userId + '/requestAction/' + productId, config);
     }
 
 };
@@ -123,29 +125,29 @@ export const productRequestHandler = (userId, productId, selected) => {
 
 export const addGroupRequests = (userId, groupId) => {
     return (dispatch) =>
-        fetch('http://localhost:8080/users/grouprequest/add/' + userId + '/' + groupId);
+        fetch(BASE_URL + 'users/grouprequest/add/' + userId + '/' + groupId);
 };
 
 export const removeGroupRequests = (userId, groupId) => {
     return (dispatch) =>
-        fetch('http://localhost:8080/users/grouprequest/remove/' + userId + '/' + groupId);
+        fetch(BASE_URL + 'users/grouprequest/remove/' + userId + '/' + groupId);
 };
 
 
 export const toggleGroup = (userId, groupId) => {
     return (dispatch) =>
-        fetch('http://localhost:8080/users/' + userId + '/groups/' + groupId + '/toggle');
+        fetch(BASE_URL + 'users/' + userId + '/groups/' + groupId + '/toggle');
 };
 
 export const deleteGroup = (userId, groupDeleteId) => {
     console.log("In actions", groupDeleteId)
     return (dispatch) =>
-        fetch('http://localhost:8080/groups/deletegroup/' + groupDeleteId + '/');
+        fetch(BASE_URL + 'groups/deletegroup/' + groupDeleteId + '/');
 };
 
 export const fetchFriendRequests = (userId, friendId) => {
     return (dispatch) =>
-        fetch('http://localhost:8080/users/friendrequest/' + userId + '/' + friendId);
+        fetch(BASE_URL + 'users/friendrequest/' + userId + '/' + friendId);
 };
 
 export const addProduct = (addProductsFormState, userId) => {
@@ -162,7 +164,7 @@ export const addProduct = (addProductsFormState, userId) => {
     }
 
     //post request to add new Product to DB
-    return fetch('http://localhost:8080/users/' + userId + '/createNewProduct', config)
+    return fetch(BASE_URL + 'users/' + userId + '/createNewProduct', config)
         .then(results => results.json())
         .then(productData => {
             console.log('config ', config);
@@ -184,7 +186,7 @@ export const addProductToGroup = (addProductsFormState, userId, groupId) => {
     }
 
     //post request to add new Product to DB
-    return fetch('http://localhost:8080/users/' + userId + '/createNewProduct/' + groupId + '/', config)
+    return fetch(BASE_URL + 'users/' + userId + '/createNewProduct/' + groupId + '/', config)
         .then(results => results.json())
         .then(productData => {
             console.log('config ', config);
@@ -207,7 +209,7 @@ export const addGroup = (addGroupFormState, adminId) => {
 
     //post request to add new Group to DB
 
-    return fetch('http://localhost:8080/users/' + adminId + '/createNewGroup', config)
+    return fetch(BASE_URL + 'users/' + adminId + '/createNewGroup', config)
         .then(results => results.json())
         .then(groupData => {
             console.log('config ', config);
@@ -228,7 +230,7 @@ export const addToWishlist = (userId, wish) => {
     }
 
     return (dispatch) =>
-        fetch('http://localhost:8080/users/' + userId + '/wishlist', config);
+        fetch(BASE_URL + 'users/' + userId + '/wishlist', config);
 }
 
 export const search = (searchedItem) => {
@@ -244,7 +246,7 @@ export const search = (searchedItem) => {
             body: JSON.stringify(searchedItem)
         }
 
-        return fetch('http://localhost:8080/searchedproducts', config)
+        return fetch(BASE_URL + 'searchedproducts', config)
             .then(data => data.json())
             .then(productObj => {
                 var products = Object.keys(productObj).length > 0 ? productObj : [];
@@ -274,7 +276,7 @@ export const searchUsers = (searchedUser) => {
             body: JSON.stringify(searchedUser)
         }
 
-        return fetch('http://localhost:8080/searchedusers', config)
+        return fetch(BASE_URL + 'searchedusers', config)
             .then(data => data.json())
             .then(userObj => {
                 var users = Object.keys(userObj).length > 0 ? userObj : [];
@@ -303,7 +305,7 @@ export const register = (addRegisterFormState) => {
         headers: myHeaders,
         body: JSON.stringify(addRegisterFormState),
     }
-    return fetch('http://localhost:8080/register', config)
+    return fetch(BASE_URL + 'register', config)
 }
 
 
@@ -319,7 +321,7 @@ export const login = (loginUser) => {
             body: JSON.stringify(loginUser)
         }
 
-        return fetch('http://localhost:8080/login/', config)
+        return fetch(BASE_URL + 'login/', config)
             .then(data => data.json())
             .then(userObj => {
                 if (userObj.id === null) {
@@ -352,7 +354,7 @@ export const login = (loginUser) => {
 //             headers: myHeaders,
 //         }
 
-//  return fetch('http://localhost:8080/groups/deletegroup/'+ groupDeleteId,config )
+//  return fetch(BASE_URL + 'groups/deletegroup/'+ groupDeleteId,config )
 //         .then(response => response.json())
 //         .then(()=>{
 //             console.log('config ', config);

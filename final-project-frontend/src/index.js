@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { Router, Route, browserHistory } from 'react-router';
+import { Router, Route, browserHistory, hashHistory } from 'react-router';
 import store from './store';
 import App from './components/App';
 import Login from './components/Login';
@@ -29,7 +29,7 @@ injectTapEventPlugin();
 ReactDOM.render(
     <Provider store={store}>
         <MuiThemeProvider>
-            <Router history={browserHistory}>
+            <Router history={hashHistory}>
                  <Route path="/" component={App} /> 
                  <Route path="/login" component={Login} /> 
                  <Route path="/register" component={RegisterForm} />  
@@ -51,4 +51,5 @@ ReactDOM.render(
     document.getElementById('root')
 );
 
-// <Route path="/maps" component={ GoogleMaps }/> 
+// <Route path="/maps" component={ GoogleMaps }/>
+// <Router history={browserHistory}>

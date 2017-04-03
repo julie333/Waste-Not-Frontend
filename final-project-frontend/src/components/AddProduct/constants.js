@@ -12,7 +12,7 @@ export const productsFormTitle = {
 
 export const productsFormStyle = {
     height: '70%',
-    width: '60%',
+    width: '70%',
 }
 
 export const formBox = {

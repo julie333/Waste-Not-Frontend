@@ -12,7 +12,7 @@ export const groupsFormTitle = {
 
 export const groupsFormStyle = {
     height: '100%',
-    width: '60%',
+    width: '70%',
     marginRight: 'auto',
     marginLeft: 'auto',
 
