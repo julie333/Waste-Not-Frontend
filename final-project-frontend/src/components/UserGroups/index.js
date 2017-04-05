@@ -28,7 +28,7 @@ class UserGroups extends Component {
           label="Your Groups"
           open
           mobile={true}
-          style={{ position: 'inherit', width: '100%',  fontFamily: 'Nunito'}}
+          style={{position: 'inherit', width: '100%',  fontFamily: 'Nunito'}}
           onStart={this.displayGroups}
           >
             { groups.map((slide,index) => (      

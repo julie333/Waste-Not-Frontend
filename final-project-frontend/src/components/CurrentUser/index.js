@@ -105,12 +105,10 @@ class CurrentUser extends Component {
                 <div className="header" style={header}>
                     <Logo/>
                     <Logout router={this.props.router}/>
-                </div>
-                    <div className="header" style={header}>
-                     <h1>{ this.props.currentUser.firstName+" "+this.props.currentUser.lastName  }</h1>
+                     <h1>{ this.props.currentUser.firstName+" "+this.props.currentUser.lastName}</h1>
                             <Avatar style={avatar}
                             src={ this.props.currentUser.avatar }
-                            size={90}
+                            size={120}
                           />
                 </div>
 

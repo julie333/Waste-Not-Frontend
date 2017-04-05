@@ -44,12 +44,13 @@ ReactDOM.render(
                  <Route path="/groups" component={ Groups } />
                  <Route path="/currentUser/groups/:groupId" component={ GroupPage } />
                  <Route path="/searchedproducts" component={ Searched } />
-                 <Route path="/products/:productId" component={ ProductId } />   
+                 <Route path="/products/:productId" component={ ProductId } /> 
+ 
             </Router>
         </MuiThemeProvider>
     </Provider>,
     document.getElementById('root')
 );
 
-// <Route path="/maps" component={ GoogleMaps }/>
+// <Route path="/maps" component={ GoogleMaps }/> 
 // <Router history={browserHistory}>

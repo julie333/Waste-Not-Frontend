@@ -1,3 +1,6 @@
+export const container = {
+
+};
 export const imgStyle = {
     marginBottom: '2%',
     marginLeft: '3%',
@@ -12,8 +15,6 @@ export const headerStyle = {
     fontSize: 35,
     color: 'whitesmoke',
     fontWeight: 'bold',
-    marginRight: 'auto',
-    marginLeft: 'auto',
     textAlign: 'center',
 };
 
@@ -37,16 +38,19 @@ export const box = {
     backgroundColor: 'whitesmoke',
     width: '100%',
     textAlign: 'center',
+    padding: 15,
     marginRight: 'auto',
     marginLeft: 'auto',
 }
 
 export const cardbox = {
+    display: 'block',
     textAlign: 'center',
     backgroundColor: 'whitesmoke',
     fontSize: 20,
     width: '80%',
+    color: 'white',
     marginRight: 'auto',
     marginLeft: 'auto',
-    color: 'white',
 }
+    

@@ -1,60 +1,33 @@
-// import React from 'react'
-// import ReactDOM from 'react-dom'
-// import Map, {GoogleApiWrapper} from 'google-maps-react'
+// import React, { Component } from 'react';
+// import ReactDOM from 'react-dom';
+// import { connect } from 'react-redux';
+// import $ from 'jquery';
 
-// const GoogleMaps = React.createClass({
-//   getInitialState: function() {
-//     return {
-//       showingInfoWindow: false,
-//       activeMarker: {},
-//       selectedPlace: {},
-//     }
-//   },
+// class GoogleMaps extends Component {
 
-//   onMapMoved: function(props, map) {
-//     const center = map.center;
-//   },
-
-//   onMarkerClick: function(props, marker, e) {
-//     this.setState({
-//       selectedPlace: props,
-//       activeMarker: marker,
-//       showingInfoWindow: true
-//     });
-//   },
-
-//   onInfoWindowClose: function() {
-//     this.setState({
-//       showingInfoWindow: false,
-//       activeMarker: null
-//     })
-//   },
-
-//   onMapClicked: function(props) {
-//     if (this.state.showingInfoWindow) {
-//       this.setState({
-//         showingInfoWindow: false,
-//         activeMarker: null
-//       })
-//     }
-//   },
-
-//   render: function() {
-//     if (!this.props.loaded) {
-//       return <div>Loading...</div>
+//     constructor(props) {
+//         super(props);   
 //     }
 
-//     return (
-//       <Map google={this.props.google}
-//           style={{width: '100%', height: '100%', position: 'relative'}}
-//           className={'map'}
-//           zoom={14}
-//           containerStyle={{}}
-//           centerAroundCurrentLocation={true}
-//           onClick={this.onMapClicked}
-//           onDragend={this.onMapMoved} />
-//     )
-//   }
-// });
+//     componentDidMount() {
+//   $('#somecomponent').locationpicker(); 
+// }
 
-// export default GoogleMaps
+  
+
+// render() {
+//         return (
+//             <div id="somecomponent" style={{width:500, height:400}}>
+                
+//             </div>
+//         );
+//     }
+// }
+
+
+
+// const mapStateToProps = (state) => {
+//     return state;
+// }
+
+// export default connect(mapStateToProps)(GoogleMaps);

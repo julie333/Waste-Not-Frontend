@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Card } from 'react-cardstack';
 import CardStack from './cardstack.js';
 import Avatar from 'material-ui/Avatar';
-import { box, cardbox, imgStyle, headerStyle, toggleStyle } from './constants.js';
+import { container, box, cardbox, imgStyle, headerStyle, toggleStyle } from './constants.js';
 import Toggle from 'material-ui/Toggle';
 import SocialPersonAdd from 'material-ui/svg-icons/social/person-add';
 import Dialog from 'material-ui/Dialog';
@@ -149,7 +149,7 @@ class Groups extends Component {
         var groups = Object.keys(this.props.currentUser).length > 0 ? this.props.currentUser.groups : [1, 2, 3];
 
         return (
-            <div>
+            <div style={container}>
           <div style={headerStyle}>
             <HomeIcon router={this.props.router}/>
             <div className="Groups" >

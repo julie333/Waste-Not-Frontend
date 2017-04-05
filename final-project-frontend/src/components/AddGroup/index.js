@@ -61,7 +61,7 @@ class AddGroup extends Component {
             <div>
                 <div style={groupsFormTitle}>
                     <HomeIcon router={this.props.router}/>
-                    <h2>Add New Group</h2>
+                    <h2>Create New Group</h2>
                 </div>
                 <div style={formBox}>
                     <Paper style={groupsFormStyle} zDepth={5}>
