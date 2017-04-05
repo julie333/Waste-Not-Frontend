@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Paper } from 'material-ui';
-import { formBox, usersFormStyle, usersFormTitle, buttonStyle, imageStyle } from './constants.js';
+import { formBox, usersFormStyle, usersFormTitle, buttonStyle, imageStyle, styleReturn, style } from './constants.js';
 import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
-import { style } from './constants.js';
 import { register } from '../../store/actions.js'
 import Divider from 'material-ui/Divider';
 import ImageUpload from '../ImageUpload';
 import Interaction from '../Interaction';
+import ActionHome from 'material-ui/svg-icons/action/home';
+import IconButton from 'material-ui/IconButton';
+import Logo from '../Logo';
 
 
 class RegisterForm extends Component {
@@ -18,7 +20,6 @@ class RegisterForm extends Component {
         this.state = {
             open: false,
         };
-
     }
 
 
@@ -34,6 +35,10 @@ class RegisterForm extends Component {
         console.log('this.state inside the form ', this.state);
         console.log('this.props ', this.props);
 
+    };
+
+    handleClick = () => {
+        this.props.router.push('/login')
     };
 
 
@@ -93,12 +98,15 @@ class RegisterForm extends Component {
         console.log("Success", avatar)
     };
 
-
     render() {
         return (
             <div>
-                <div style={usersFormTitle} className="App-header">
-                    <h2>Add New User</h2>
+                <div style={usersFormTitle}>
+                      <Logo/>
+                        <IconButton style={styleReturn}>
+                           <ActionHome color="#ff4081" onTouchTap={this.handleClick}/>
+                        </IconButton>  
+                    <h2>Sign Up</h2>
                 </div>
                 <div style={formBox}>
                     <Paper style={usersFormStyle} zDepth={3}>
@@ -163,8 +171,8 @@ class RegisterForm extends Component {
                                  />
                                   <Divider />
  
-                               <FlatButton style={buttonStyle} backgroundColor="#A2AB58" 
-                                           hoverColor='#67BCDB' label="Sign Up" 
+                               <FlatButton style={buttonStyle}  backgroundColor='#67BCDB'
+                                           hoverColor="#ff4081" label="Sign Up" 
                                            onClick={this.submitNewUserData}/>
                                <Interaction open={this.state.open} message="You have signed up!"/>
                             </form>

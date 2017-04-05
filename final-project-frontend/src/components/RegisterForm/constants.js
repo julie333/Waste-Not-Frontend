@@ -2,23 +2,23 @@ export const usersFormTitle = {
     width: '100%',
     height: '80%',
     textAlign: 'center',
-    backgroundColor: '#A2AB58',
+    backgroundColor: '#67BCDB',
     fontFamily: 'Nunito',
     fontSize: 25,
     display: 'inline-block',
-    color: 'white',
+    color: 'whitesmoke',
     fontWeight: 'bold',
 }
 
 export const usersFormStyle = {
     height: '70%',
-    width: '60%',
+    width: '70%',
 }
 
 export const formBox = {
     display: 'flex',
     justifyContent: 'space-around',
-    backgroundColor: '#67BCDB',
+    backgroundColor: 'whitesmoke',
 }
 
 export const style = {
@@ -28,6 +28,12 @@ export const style = {
     marginLeft: '5%',
     color: 'gray'
 };
+
+export const styleReturn = {
+    marginTop: '1%',
+    marginRight: '1%',
+    cssFloat: 'right',
+}
 
 export const dropdownStyle = {
     fontFamily: 'Nunito',
@@ -39,11 +45,11 @@ export const dropdownStyle = {
 export const buttonStyle = {
     fontFamily: 'Nunito',
     fontSize: 15,
-    marginTop: '10%',
-    marginBottom: '10%',
+    marginBottom: '3%',
     marginRight: 'auto',
     marginLeft: '10%',
-    color: 'white'
+    color: 'white',
+    marginTop: '5%',
 };
 
 export const imageStyle = {
