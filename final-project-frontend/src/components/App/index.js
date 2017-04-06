@@ -6,10 +6,10 @@ import RaisedButton from 'material-ui/FlatButton';
 
 const style = {
     width: '100%',
-    height: '100vh',
+    height: '120vh',
     backgroundColor: '#222',
     fontFamily: 'Nunito',
-    fontSize: 70,
+    fontSize: 60,
     textAlign: 'center'
 }
 
@@ -67,7 +67,7 @@ export default class App extends Component {
           showNav={false}
           showIndex={false}
           onImageLoad={this.handleImageLoad}/>  
-          <RaisedButton style={{width: '100%',height:'7%'}}
+          <RaisedButton style={{width: '100%',height:'10%'}}
                         labelStyle={{fontSize: '40', color:'whitesmoke'}}
                         label=" Join Us. "
                         backgroundColor="#222" 
