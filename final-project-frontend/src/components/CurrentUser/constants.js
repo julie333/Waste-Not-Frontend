@@ -1,10 +1,11 @@
+
 export const container = {
     display: 'flex',
     flexWrap: 'wrap',
     height: '100vh',
     backgroundColor: 'lightgray',
     textAlign: 'center',
-    width: '90%',
+    width: '100%',
     marginRight: 'auto',
     marginLeft: 'auto',
     verticalAlign: 'middle',
@@ -15,7 +16,7 @@ export const container = {
 export const header = {
     width: '100%',
     backgroundColor: '#67BCDB',
- 
+
 }
 
 export const searchBox = {
@@ -57,4 +58,3 @@ export const txtBoxStyle = {
     marginBottom: '3%',
     marginRight: '3%',
 }
-

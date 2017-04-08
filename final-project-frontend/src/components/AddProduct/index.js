@@ -125,7 +125,7 @@ class AddProduct extends Component {
 
     pickupTimeInput = (event, time) => {
         this.setState({
-            pickupTime: time
+            pickupTime: time.getHours() + ":" + time.getMinutes()
         })
     };
 
@@ -202,6 +202,7 @@ class AddProduct extends Component {
                                   <TimePicker 
                                     hintText="Pickup time"
                                     autoOk={true}
+                                    format="24hr"
                                     onChange={this.pickupTimeInput}/>
                                   </div>
 

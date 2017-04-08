@@ -49,7 +49,7 @@ class GroupPage extends Component {
                      <h2>{this.props.groups.groupName}</h2>
                             <Avatar style={avatar}
                             src={ this.props.groups.groupImage }
-                            size={250}
+                            size={200}
                           />
                   </div>
                   <div className="members" style={members}>

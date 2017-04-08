@@ -5,17 +5,26 @@ export const root = {
     fontFamily: 'Nunito',
     color: 'whitesmoke',
     fontSize: 20,
-    marginRight: 'auto',
+     marginRight: 'auto',
 };
 
 export const gridList = {
     width: '90%',
-    height: 900,
+    height: 700,
     overflowY: 'auto',
     fontFamily: 'Nunito',
     color: 'whitesmoke',
     marginBottom: 5,
 };
+
+export const gridTile = {
+    width: '90%',
+    height: 300,
+    fontFamily: 'Nunito',
+    color: 'whitesmoke',
+    marginBottom: 10,
+};
+
 
 export const styles = {
   block: {
@@ -30,5 +39,4 @@ export const styles = {
 export const buttonStyle = {
     fontFamily: 'Nunito',
     fontSize: 12,
-    marginBottom: 15,
 };

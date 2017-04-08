@@ -108,7 +108,7 @@ class CurrentUser extends Component {
                      <h1>{ this.props.currentUser.firstName+" "+this.props.currentUser.lastName}</h1>
                             <Avatar style={avatar}
                             src={ this.props.currentUser.avatar }
-                            size={120}
+                            size={150}
                           />
                 </div>
 
@@ -164,11 +164,13 @@ class CurrentUser extends Component {
                      </FloatingActionButton>
                 </div>
 
+              { this.props.currentUser.productsPosted.length > 0 &&
                 <div className="productsPostedByUser" style={productsPostedByUser}>
                        <h2> You Recently Shared these ..</h2>
                       <Products productsToRender={this.props.currentUser.productsPosted} 
                       router={this.props.router}/>   
                 </div>
+              }
 
                 <div className="UserGroups" style={userGroups}>
                       <UserGroups groupsToRender={this.props.currentUser.groups}

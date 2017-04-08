@@ -7,7 +7,7 @@ import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import ToggleRadioButtonChecked from 'material-ui/svg-icons/toggle/radio-button-checked';
 import ToggleRadioButtonUnchecked from 'material-ui/svg-icons/toggle/radio-button-unchecked';
 import MapsZoomOutMap from 'material-ui/svg-icons/maps/zoom-out-map';
-import { root, gridList, styles, buttonStyle } from './constants.js';
+import { gridTile, root, gridList, styles, buttonStyle } from './constants.js';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import FlatButton from 'material-ui/FlatButton';
 import { productRequestHandler } from '../../store/actions.js';
@@ -54,7 +54,7 @@ class Products extends Component {
         for (var i = 0; i < listSize; i++) {
 
             t.push((
-                <div>
+                            <div style={gridTile}>
         <GridTile  onTouchTap={this.handleZoom.bind(this, tile.id)}
           key={tile.id+tile.requestList[i].username}
           title={tile.productName}
@@ -114,10 +114,10 @@ class Products extends Component {
               <div style={root}>
                 <GridList
                   cols={2}
-                  cellHeight={200}
+                  cellHeight={470}
                   style={gridList}
                 >
-                 {uniqproducts.map((tile) => (
+                 {uniqproducts.map((tile,index) => (
                      this.requestList(tile,tile.requestList.length)           
                   ))}
                 </GridList>

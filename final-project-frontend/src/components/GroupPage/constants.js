@@ -1,23 +1,25 @@
 export const container = {
-    height: '100%',
+    height: '100vh',
     backgroundColor: 'whitesmoke',
     textAlign: 'center',
-    width: '90%',
+    width: '100%',
     marginRight: 'auto',
     marginLeft: 'auto',
     verticalAlign: 'middle',
-    fontFamily: 'Nunito',
+    fontFamily: 'Acme',
 
 };
 export const header = {
     width: '100%',
     backgroundColor: '#67BCDB',
     color: 'whitesmoke',
+    fontSize: 30,
+     fontFamily: 'Acme',
 }
 
 export const members = {
-    fontFamily: 'Nunito',
-    fontSize: 15,
+    fontFamily: 'Acme',
+    fontSize: 20,
     fontWeight: 'bold',
     marginTop: 2,
     color: '#A2AB58',
@@ -31,7 +33,7 @@ export const productsPostedToGroup = {
     backgroundColor: '#67BCDB',
     color: 'whitesmoke',
     marginTop: 2,
-    fontFamily: 'Nunito',
+    fontFamily: 'Acme',
     fontWeight: 'bold',
     fontSize: 20,
 }
@@ -45,7 +47,7 @@ export const userGroups = {
 }
 
 export const txtBoxStyle = {
-    fontFamily: 'Nunito',
+    fontFamily: 'Acme',
     fontSize: 15,
     marginBottom: '3%',
     marginRight: '3%',

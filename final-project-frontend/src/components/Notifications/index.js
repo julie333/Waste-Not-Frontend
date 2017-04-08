@@ -42,8 +42,6 @@ class Notifications extends Component {
             openAdd: true,
         })
 
-
-
         console.log("herer", this.props.currentUser);
         const fetchAction = toggleGroup(this.props.currentUser.id, groupId);
         this.props.dispatch(fetchAction);
@@ -93,27 +91,27 @@ class Notifications extends Component {
                         {groups.map(function(group, index)  {
                             return(  
                               <div>
-                                <ListItem  
+                                <ListItem style={{fontSize : 30, fontFamily:'Acme', color: '#67BCDB'}} 
                                      key={ group.id } 
-                                     primaryText={group.username}
+                                     primaryText={group.groupName}
                                      disabled={false}
             
                                      leftAvatar={
                                         <Avatar
                                           src={group.groupImage}
-                                          size={50}
-                                          style={{marginLeft : 20}}
+                                          size={100}
+                                          style={{marginLeft : 20, marginBottom : 30}}
                                         />
                                      } 
                                       leftIcon={
-                                        <IconButton style={{marginLeft : 150, marginTop : -10}}>
+                                        <IconButton style={{marginLeft : 150}}>
                                             <NavigationCheck color="green" onTouchTap={() => self.handleAdd(group.id)}/>
                                             <NavigationClose color="red" onTouchTap={() => self.handleRemove(group.id)}/>
                                         </IconButton>
                                       }
                                 >  
                                 </ListItem>  
-                                <br/>
+                                <br/><br/>
                                 <Divider/>
                                 </div>
                             )  
