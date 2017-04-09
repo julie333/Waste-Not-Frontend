@@ -20,8 +20,8 @@ export const DELETE_GROUP = 'deleteGroup';
 export const ADD_TO_WISHLIST = 'addToWishlist';
 export const PRODUCT_REQUEST_HANDLER = 'productRequestHandler';
 
-const BASE_URL = 'http://localhost:8080/';
-// const BASE_URL = 'https://vast-ravine-27244.herokuapp.com/';
+// const BASE_URL = 'http://localhost:8080/';
+const BASE_URL = 'https://vast-ravine-27244.herokuapp.com/';
 
 export const fetchAllUsersData = () => {
     return (dispatch) => {
